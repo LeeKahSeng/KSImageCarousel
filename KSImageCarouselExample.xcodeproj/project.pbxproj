@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9D158531ED5B94100F4EAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */; };
+		F9D158551ED5B94100F4EAD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D158541ED5B94100F4EAD7 /* ViewController.swift */; };
+		F9D158581ED5B94100F4EAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D158561ED5B94100F4EAD7 /* Main.storyboard */; };
+		F9D1585A1ED5B94100F4EAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D158591ED5B94100F4EAD7 /* Assets.xcassets */; };
+		F9D1585D1ED5B94100F4EAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D1585B1ED5B94100F4EAD7 /* LaunchScreen.storyboard */; };
+		F9D158881ED5C29500F4EAD7 /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D158831ED5C27700F4EAD7 /* KSImageCarousel.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9D158821ED5C27700F4EAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9D1582C1ED5B8D200F4EAD7;
+			remoteInfo = KSImageCarousel;
+		};
+		F9D158841ED5C27700F4EAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9D158351ED5B8D200F4EAD7;
+			remoteInfo = KSImageCarouselTests;
+		};
+		F9D158861ED5C28D00F4EAD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F9D1582B1ED5B8D200F4EAD7;
+			remoteInfo = KSImageCarousel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F9D1584F1ED5B94100F4EAD7 /* KSImageCarouselExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSImageCarouselExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F9D158541ED5B94100F4EAD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F9D158571ED5B94100F4EAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F9D158591ED5B94100F4EAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9D1585C1ED5B94100F4EAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F9D1585E1ED5B94100F4EAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KSImageCarousel.xcodeproj; path = KSImageCarousel/KSImageCarousel.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9D1584C1ED5B94100F4EAD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D158881ED5C29500F4EAD7 /* KSImageCarousel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9D158461ED5B94100F4EAD7 = {
+			isa = PBXGroup;
+			children = (
+				F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */,
+				F9D158511ED5B94100F4EAD7 /* KSImageCarouselExample */,
+				F9D158501ED5B94100F4EAD7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9D158501ED5B94100F4EAD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9D1584F1ED5B94100F4EAD7 /* KSImageCarouselExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9D158511ED5B94100F4EAD7 /* KSImageCarouselExample */ = {
+			isa = PBXGroup;
+			children = (
+				F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */,
+				F9D158541ED5B94100F4EAD7 /* ViewController.swift */,
+				F9D158561ED5B94100F4EAD7 /* Main.storyboard */,
+				F9D158591ED5B94100F4EAD7 /* Assets.xcassets */,
+				F9D1585B1ED5B94100F4EAD7 /* LaunchScreen.storyboard */,
+				F9D1585E1ED5B94100F4EAD7 /* Info.plist */,
+			);
+			path = KSImageCarouselExample;
+			sourceTree = "<group>";
+		};
+		F9D1587E1ED5C27700F4EAD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9D158831ED5C27700F4EAD7 /* KSImageCarousel.framework */,
+				F9D158851ED5C27700F4EAD7 /* KSImageCarouselTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9D1584E1ED5B94100F4EAD7 /* KSImageCarouselExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9D158611ED5B94100F4EAD7 /* Build configuration list for PBXNativeTarget "KSImageCarouselExample" */;
+			buildPhases = (
+				F9D1584B1ED5B94100F4EAD7 /* Sources */,
+				F9D1584C1ED5B94100F4EAD7 /* Frameworks */,
+				F9D1584D1ED5B94100F4EAD7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9D158871ED5C28D00F4EAD7 /* PBXTargetDependency */,
+			);
+			name = KSImageCarouselExample;
+			productName = KSImageCarouselExample;
+			productReference = F9D1584F1ED5B94100F4EAD7 /* KSImageCarouselExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9D158471ED5B94100F4EAD7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Lee Kah Seng";
+				TargetAttributes = {
+					F9D1584E1ED5B94100F4EAD7 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = SM42V25455;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F9D1584A1ED5B94100F4EAD7 /* Build configuration list for PBXProject "KSImageCarouselExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F9D158461ED5B94100F4EAD7;
+			productRefGroup = F9D158501ED5B94100F4EAD7 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F9D1587E1ED5C27700F4EAD7 /* Products */;
+					ProjectRef = F9D1587D1ED5C27700F4EAD7 /* KSImageCarousel.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F9D1584E1ED5B94100F4EAD7 /* KSImageCarouselExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F9D158831ED5C27700F4EAD7 /* KSImageCarousel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KSImageCarousel.framework;
+			remoteRef = F9D158821ED5C27700F4EAD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F9D158851ED5C27700F4EAD7 /* KSImageCarouselTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KSImageCarouselTests.xctest;
+			remoteRef = F9D158841ED5C27700F4EAD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9D1584D1ED5B94100F4EAD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D1585D1ED5B94100F4EAD7 /* LaunchScreen.storyboard in Resources */,
+				F9D1585A1ED5B94100F4EAD7 /* Assets.xcassets in Resources */,
+				F9D158581ED5B94100F4EAD7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9D1584B1ED5B94100F4EAD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9D158551ED5B94100F4EAD7 /* ViewController.swift in Sources */,
+				F9D158531ED5B94100F4EAD7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9D158871ED5C28D00F4EAD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KSImageCarousel;
+			targetProxy = F9D158861ED5C28D00F4EAD7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F9D158561ED5B94100F4EAD7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9D158571ED5B94100F4EAD7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F9D1585B1ED5B94100F4EAD7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9D1585C1ED5B94100F4EAD7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F9D1585F1ED5B94100F4EAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F9D158601ED5B94100F4EAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F9D158621ED5B94100F4EAD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SM42V25455;
+				INFOPLIST_FILE = KSImageCarouselExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LeeKahSeng.KSImageCarouselExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F9D158631ED5B94100F4EAD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SM42V25455;
+				INFOPLIST_FILE = KSImageCarouselExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.LeeKahSeng.KSImageCarouselExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9D1584A1ED5B94100F4EAD7 /* Build configuration list for PBXProject "KSImageCarouselExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D1585F1ED5B94100F4EAD7 /* Debug */,
+				F9D158601ED5B94100F4EAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9D158611ED5B94100F4EAD7 /* Build configuration list for PBXNativeTarget "KSImageCarouselExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9D158621ED5B94100F4EAD7 /* Debug */,
+				F9D158631ED5B94100F4EAD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9D158471ED5B94100F4EAD7 /* Project object */;
+}
