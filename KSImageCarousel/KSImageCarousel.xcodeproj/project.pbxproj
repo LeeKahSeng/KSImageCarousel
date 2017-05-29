@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */; };
+		F9A678DE1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */; };
+		F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DF1EDAD96600AE2E0A /* KSICError.swift */; };
 		F9D158361ED5B8D200F4EAD7 /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */; };
 		F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */; };
 		F9D1583D1ED5B8D200F4EAD7 /* KSImageCarousel.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +26,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICCoordinator.swift; sourceTree = "<group>"; };
+		F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageScrollerViewController.swift; sourceTree = "<group>"; };
+		F9A678DF1EDAD96600AE2E0A /* KSICError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICError.swift; sourceTree = "<group>"; };
 		F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSImageCarousel.h; sourceTree = "<group>"; };
 		F9D158301ED5B8D200F4EAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 		F9D158771ED5BEDD00F4EAD7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F9A678DF1EDAD96600AE2E0A /* KSICError.swift */,
+				F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */,
+				F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -207,6 +216,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A678DE1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift in Sources */,
+				F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */,
+				F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +386,7 @@
 		F9D158441ED5B8D200F4EAD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SM42V25455;
 				INFOPLIST_FILE = KSImageCarouselTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -386,6 +399,7 @@
 		F9D158451ED5B8D200F4EAD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SM42V25455;
 				INFOPLIST_FILE = KSImageCarouselTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
