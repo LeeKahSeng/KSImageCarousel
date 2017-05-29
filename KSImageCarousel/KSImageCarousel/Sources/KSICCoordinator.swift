@@ -96,7 +96,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
                     model[currentPage],
                     model[currentPage + 1]]
         } else if isLastPage {
-            // last page
+            // Last page
             return [model[currentPage - 1],
                     model[currentPage],
                     nil]
@@ -131,6 +131,68 @@ class KSICFiniteCoordinator: KSICCoordinator {
     func previousPage() {
         if currentPage == firstPage {
             return
+        } else {
+            let newPage = currentPage - 1
+            try! goto(page: newPage)
+        }
+    }
+}
+
+
+class KSICInFiniteCoordinator: KSICCoordinator {
+    
+    var carousel: KSICImageScrollerViewController?
+    let model: [String?]
+    var currentPage: Int {
+        didSet {
+            print("Trigger callback on carousel due to model view changed")
+            //                let vm = carouselViewModel
+            //                carousel?.viewModelDidChanged?(vm)
+        }
+    }
+    
+    var carouselViewModel: [String?] {
+        if isFirstPage {
+            // First page
+            return [model[lastPage],
+                    model[currentPage],
+                    model[currentPage + 1]]
+        } else if isLastPage {
+            // Last page
+            return [model[currentPage - 1],
+                    model[currentPage],
+                    model[firstPage]]
+        } else {
+            return [model[currentPage - 1],
+                    model[currentPage],
+                    model[currentPage + 1]]
+        }
+    }
+    
+    init(with model: [String], initialPage: Int) throws {
+        
+        self.model = model
+        self.currentPage = initialPage
+        
+        // Make sure initial page is in range
+        guard isPageInRange(initialPage) else {
+            throw CoordinatorError.pageOutOfRange
+        }
+    }
+    
+    // Implementation for Coordinator
+    func nextPage() {
+        if currentPage == lastPage {
+            try! goto(page: firstPage)
+        } else {
+            let newPage = currentPage + 1
+            try! goto(page: newPage)
+        }
+    }
+    
+    func previousPage() {
+        if currentPage == firstPage {
+            try! goto(page: lastPage)
         } else {
             let newPage = currentPage - 1
             try! goto(page: newPage)
