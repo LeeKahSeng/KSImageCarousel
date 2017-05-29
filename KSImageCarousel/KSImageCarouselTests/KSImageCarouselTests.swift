@@ -130,6 +130,41 @@ class KSImageCarouselTests: XCTestCase {
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }
     
+    func testFiniteCoordonatorPageNavigation_1elementInModel() {
+        // Create test data
+        let dummyModel = ["1"]
+        let dummyInitialPage = 0
+        
+        let coordinator = try! KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+     
+        // Test initial view model value
+        let currentPage = dummyInitialPage
+        let expectedViewModel = [nil, dummyModel[currentPage], nil]
+        var actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+        
+        // Go to next page 3 times
+        let nextPageCount = 3
+        for _ in 0..<nextPageCount {
+            coordinator.nextPage()
+        }
+        
+        // Test view model value
+        actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+        
+        
+        // Go to previous page 2 times
+        let prevPageCount = 2
+        for _ in 0..<prevPageCount {
+            coordinator.previousPage()
+        }
+        
+        // Test view model value
+        actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+    }
+    
     func testInFiniteCoordonatorPageNavigation() {
         
         // Create test data
@@ -193,6 +228,41 @@ class KSImageCarouselTests: XCTestCase {
         // Test view model value
         currentPage = 0
         expectedViewModel = [dummyModel[lastPage], dummyModel[currentPage], dummyModel[currentPage + 1]]
+        actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+    }
+    
+    func testInfiniteCoordonatorPageNavigation_1elementInModel() {
+        // Create test data
+        let dummyModel = ["1"]
+        let dummyInitialPage = 0
+        
+        let coordinator = try! KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        
+        // Test initial view model value
+        let currentPage = dummyInitialPage
+        let expectedViewModel = [dummyModel[currentPage], dummyModel[currentPage], dummyModel[currentPage]]
+        var actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+        
+        // Go to next page 3 times
+        let nextPageCount = 3
+        for _ in 0..<nextPageCount {
+            coordinator.nextPage()
+        }
+        
+        // Test view model value
+        actualViewModel = coordinator.carouselViewModel
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+        
+        
+        // Go to previous page 2 times
+        let prevPageCount = 2
+        for _ in 0..<prevPageCount {
+            coordinator.previousPage()
+        }
+        
+        // Test view model value
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }

@@ -82,20 +82,28 @@ class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     var carouselViewModel: [String?] {
-        if isFirstPage {
-            // First page
+        
+        if model.count == 1 {
             return [nil,
-                    model[currentPage],
-                    model[currentPage + 1]]
-        } else if isLastPage {
-            // Last page
-            return [model[currentPage - 1],
                     model[currentPage],
                     nil]
         } else {
-            return [model[currentPage - 1],
-                    model[currentPage],
-                    model[currentPage + 1]]
+            
+            if isFirstPage {
+                // First page
+                return [nil,
+                        model[currentPage],
+                        model[currentPage + 1]]
+            } else if isLastPage {
+                // Last page
+                return [model[currentPage - 1],
+                        model[currentPage],
+                        nil]
+            } else {
+                return [model[currentPage - 1],
+                        model[currentPage],
+                        model[currentPage + 1]]
+            }
         }
     }
     
@@ -176,20 +184,27 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     }
     
     var carouselViewModel: [String?] {
-        if isFirstPage {
-            // First page
-            return [model[lastPage],
+        if model.count == 1 {
+            return [model[currentPage],
                     model[currentPage],
-                    model[currentPage + 1]]
-        } else if isLastPage {
-            // Last page
-            return [model[currentPage - 1],
-                    model[currentPage],
-                    model[firstPage]]
+                    model[currentPage]]
         } else {
-            return [model[currentPage - 1],
-                    model[currentPage],
-                    model[currentPage + 1]]
+            
+            if isFirstPage {
+                // First page
+                return [model[lastPage],
+                        model[currentPage],
+                        model[currentPage + 1]]
+            } else if isLastPage {
+                // Last page
+                return [model[currentPage - 1],
+                        model[currentPage],
+                        model[firstPage]]
+            } else {
+                return [model[currentPage - 1],
+                        model[currentPage],
+                        model[currentPage + 1]]
+            }
         }
     }
     
