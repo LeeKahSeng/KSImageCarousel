@@ -30,6 +30,10 @@ class KSImageCarouselTests: XCTestCase {
         // Test KSICFiniteCoordinator
         let coordinator = try? KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         XCTAssertNotNil(coordinator)
+        
+        // Test KSICInFiniteCoordinator
+        let coordinator2 = try? KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        XCTAssertNotNil(coordinator2)
     }
     
     func testCoordinatorInitFail() {
@@ -41,6 +45,10 @@ class KSImageCarouselTests: XCTestCase {
         // Test KSICFiniteCoordinator
         let coordinator = try? KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         XCTAssertNil(coordinator)
+        
+        // Test KSICInFiniteCoordinator
+        let coordinator2 = try? KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        XCTAssertNil(coordinator2)
     }
     
     func testFiniteCoordonatorPageNavigation() {
