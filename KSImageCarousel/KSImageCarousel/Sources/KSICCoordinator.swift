@@ -28,7 +28,7 @@ import Foundation
 
 protocol KSICCoordinator: class {
     var carousel: KSICImageScrollerViewController? { get }
-    var model: [String?] { get }
+    var model: [String] { get }
     var carouselViewModel: [String?] { get }
     var currentPage: Int { get }
     
@@ -63,7 +63,7 @@ extension KSICCoordinator {
 
 class KSICFiniteCoordinator: KSICCoordinator {
     
-    let model: [String?]
+    let model: [String]
     
     private var _carousel: KSICImageScrollerViewController?
     var carousel: KSICImageScrollerViewController? {
@@ -100,7 +100,12 @@ class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     init(with model: [String], initialPage: Int) throws {
-
+        
+        // Make sure model is not empty
+        guard model.count > 0 else {
+            throw CoordinatorError.emptyModel
+        }
+        
         self.model = model
         self._currentPage = initialPage
         
@@ -152,7 +157,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
 
 class KSICInFiniteCoordinator: KSICCoordinator {
     
-    let model: [String?]
+    let model: [String]
     
     var _carousel: KSICImageScrollerViewController?
     var carousel: KSICImageScrollerViewController? {
@@ -189,6 +194,11 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     }
     
     init(with model: [String], initialPage: Int) throws {
+        
+        // Make sure model is not empty
+        guard model.count > 0 else {
+            throw CoordinatorError.emptyModel
+        }
         
         self.model = model
         self._currentPage = initialPage

@@ -28,4 +28,5 @@ import Foundation
 
 enum CoordinatorError: Error {
     case pageOutOfRange
+    case emptyModel
 }

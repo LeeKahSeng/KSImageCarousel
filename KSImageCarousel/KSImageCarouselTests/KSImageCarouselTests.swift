@@ -43,12 +43,26 @@ class KSImageCarouselTests: XCTestCase {
         let dummyInitialPage = 10
         
         // Test KSICFiniteCoordinator
-        let coordinator = try? KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
-        XCTAssertNil(coordinator)
+        // Out of range
+        XCTAssertThrowsError(try KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)) { error in
+            XCTAssertEqual(error as? CoordinatorError, CoordinatorError.pageOutOfRange)
+        }
         
+        // Empty model
+        XCTAssertThrowsError(try KSICFiniteCoordinator(with: [], initialPage: 0)) { error in
+            XCTAssertEqual(error as? CoordinatorError, CoordinatorError.emptyModel)
+        }
+
         // Test KSICInFiniteCoordinator
-        let coordinator2 = try? KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
-        XCTAssertNil(coordinator2)
+        // Out of range
+        XCTAssertThrowsError(try KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)) { error in
+            XCTAssertEqual(error as? CoordinatorError, CoordinatorError.pageOutOfRange)
+        }
+        
+        // Empty model
+        XCTAssertThrowsError(try KSICInFiniteCoordinator(with: [], initialPage: 0)) { error in
+            XCTAssertEqual(error as? CoordinatorError, CoordinatorError.emptyModel)
+        }
     }
     
     func testFiniteCoordonatorPageNavigation() {
