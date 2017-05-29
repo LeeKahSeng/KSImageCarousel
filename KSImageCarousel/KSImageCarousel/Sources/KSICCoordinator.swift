@@ -27,11 +27,12 @@
 import Foundation
 
 protocol KSICCoordinator: class {
-    var carousel: KSICImageScrollerViewController? { get set }
+    var carousel: KSICImageScrollerViewController? { get }
     var model: [String?] { get }
     var carouselViewModel: [String?] { get }
-    var currentPage: Int { get set }
+    var currentPage: Int { get }
     
+    func showCarousel()
     func nextPage()
     func previousPage()
 }
@@ -57,37 +58,28 @@ extension KSICCoordinator {
     fileprivate func isPageInRange(_ page: Int) -> Bool {
         return  (page >= firstPage && page <= lastPage)
     }
-    
-    fileprivate func goto(page p: Int) throws {
-        
-        // Make sure page is between first page and last page
-        guard isPageInRange(p) else {
-            // throw exception
-            throw CoordinatorError.pageOutOfRange
-        }
-        
-        currentPage = p
-    }
-    
-    public func showCarousel() {
-//        let vm = viewModel(forPage: currentPage)
-        carousel = KSICImageScrollerViewController()
-//        carousel.delegate = self
-    }
 }
 
 
 class KSICFiniteCoordinator: KSICCoordinator {
     
-    var carousel: KSICImageScrollerViewController?
     let model: [String?]
-    var currentPage: Int {
-            didSet {
-                print("Trigger callback on carousel due to model view changed")
-//                let vm = carouselViewModel
-//                carousel?.viewModelDidChanged?(vm)
-            }
+    
+    private var _carousel: KSICImageScrollerViewController?
+    var carousel: KSICImageScrollerViewController? {
+        return _carousel
+    }
+    
+    private var _currentPage: Int {
+        didSet {
+            print("Trigger callback on carousel due to model view changed")
+            //                let vm = carouselViewModel
+            //                carousel?.viewModelDidChanged?(vm)
         }
+    }
+    var currentPage: Int {
+        return _currentPage
+    }
     
     var carouselViewModel: [String?] {
         if isFirstPage {
@@ -110,7 +102,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
     init(with model: [String], initialPage: Int) throws {
 
         self.model = model
-        self.currentPage = initialPage
+        self._currentPage = initialPage
         
         // Make sure initial page is in range
         guard isPageInRange(initialPage) else {
@@ -118,7 +110,26 @@ class KSICFiniteCoordinator: KSICCoordinator {
         }
     }
     
+    // Private
+    private func goto(page p: Int) throws {
+        
+        // Make sure page is between first page and last page
+        guard isPageInRange(p) else {
+            // throw exception
+            throw CoordinatorError.pageOutOfRange
+        }
+        
+        _currentPage = p
+    }
+
+    
     // Implementation for Coordinator
+    public func showCarousel() {
+        //        let vm = viewModel(forPage: currentPage)
+        _carousel = KSICImageScrollerViewController()
+        //        carousel.delegate = self
+    }
+
     func nextPage() {
         if currentPage == lastPage {
             return
@@ -141,14 +152,22 @@ class KSICFiniteCoordinator: KSICCoordinator {
 
 class KSICInFiniteCoordinator: KSICCoordinator {
     
-    var carousel: KSICImageScrollerViewController?
     let model: [String?]
-    var currentPage: Int {
+    
+    var _carousel: KSICImageScrollerViewController?
+    var carousel: KSICImageScrollerViewController? {
+        return _carousel
+    }
+    
+    var _currentPage: Int {
         didSet {
             print("Trigger callback on carousel due to model view changed")
             //                let vm = carouselViewModel
             //                carousel?.viewModelDidChanged?(vm)
         }
+    }
+    var currentPage: Int {
+        return _currentPage
     }
     
     var carouselViewModel: [String?] {
@@ -172,7 +191,7 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     init(with model: [String], initialPage: Int) throws {
         
         self.model = model
-        self.currentPage = initialPage
+        self._currentPage = initialPage
         
         // Make sure initial page is in range
         guard isPageInRange(initialPage) else {
@@ -180,7 +199,25 @@ class KSICInFiniteCoordinator: KSICCoordinator {
         }
     }
     
+    // Private
+    private func goto(page p: Int) throws {
+        
+        // Make sure page is between first page and last page
+        guard isPageInRange(p) else {
+            // throw exception
+            throw CoordinatorError.pageOutOfRange
+        }
+        
+        _currentPage = p
+    }
+    
     // Implementation for Coordinator
+    public func showCarousel() {
+        //        let vm = viewModel(forPage: currentPage)
+        _carousel = KSICImageScrollerViewController()
+        //        carousel.delegate = self
+    }
+    
     func nextPage() {
         if currentPage == lastPage {
             try! goto(page: firstPage)
