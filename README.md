@@ -1,2 +1,2 @@
 # KSImageCarousel
-An Apple App Store main screen alike image carousel 
+A replication of the Apple App Store main screen image carousel 
