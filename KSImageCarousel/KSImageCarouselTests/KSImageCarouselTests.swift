@@ -11,6 +11,32 @@ import XCTest
 
 class KSImageCarouselTests: XCTestCase {
     
+    enum TestImage {
+        case black
+        case white
+        case green
+        case red
+        case blue
+        case gray
+        
+        var name: String {
+            switch self {
+            case .black:
+                return "black"
+            case .white:
+                return "white"
+            case .green:
+                return "green"
+            case .red:
+                return "red"
+            case .blue:
+                return "blue"
+            case .gray:
+                return "gray"
+            }
+        }
+    }
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -24,7 +50,9 @@ class KSImageCarouselTests: XCTestCase {
     func testCoordinatorInitSuccessful() {
   
         // Create test data
-        let dummyModel = ["1", "2", "3", "4"]
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.blue)]
         let dummyInitialPage = 1
         
         // Test KSICFiniteCoordinator
@@ -39,7 +67,9 @@ class KSImageCarouselTests: XCTestCase {
     func testCoordinatorInitFail() {
         
         // Create test data
-        let dummyModel = ["1", "2", "3", "4"]
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.blue)]
         let dummyInitialPage = 10
         
         // Test KSICFiniteCoordinator
@@ -64,11 +94,17 @@ class KSImageCarouselTests: XCTestCase {
             XCTAssertEqual(error as? CoordinatorError, CoordinatorError.emptyModel)
         }
     }
-    
+
     func testFiniteCoordonatorPageNavigation() {
         
         // Create test data
-        let dummyModel = ["1", "2", "3", "4", "5", "6"]
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.gray),
+                          createTestImage(.red),
+                          createTestImage(.green),
+                          createTestImage(.blue)]
+        
         let dummyInitialPage = 0
         
         let coordinator = try! KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
@@ -77,7 +113,7 @@ class KSImageCarouselTests: XCTestCase {
         var currentPage = dummyInitialPage
         var expectedViewModel = [nil, dummyModel[currentPage], dummyModel[currentPage + 1]]
         var actualViewModel = coordinator.carouselViewModel
-        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
+        XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel))
         
         // Go to next page 3 times
         var nextPageCount = 3
@@ -129,10 +165,10 @@ class KSImageCarouselTests: XCTestCase {
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }
-    
+
     func testFiniteCoordonatorPageNavigation_1elementInModel() {
         // Create test data
-        let dummyModel = ["1"]
+        let dummyModel = [createTestImage(.black)]
         let dummyInitialPage = 0
         
         let coordinator = try! KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
@@ -164,11 +200,16 @@ class KSImageCarouselTests: XCTestCase {
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }
-    
+
     func testInFiniteCoordonatorPageNavigation() {
         
         // Create test data
-        let dummyModel = ["1", "2", "3", "4", "5", "6"]
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.gray),
+                          createTestImage(.red),
+                          createTestImage(.green),
+                          createTestImage(.blue)]
         let dummyInitialPage = 0
         
         let coordinator = try! KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
@@ -234,7 +275,7 @@ class KSImageCarouselTests: XCTestCase {
     
     func testInfiniteCoordonatorPageNavigation_1elementInModel() {
         // Create test data
-        let dummyModel = ["1"]
+        let dummyModel = [createTestImage(.black)]
         let dummyInitialPage = 0
         
         let coordinator = try! KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
@@ -269,10 +310,35 @@ class KSImageCarouselTests: XCTestCase {
 
     
     // MARK: - Utilities
-    func compare(viewModel1 vm1: [String?], viewModel2 vm2: [String?]) -> Bool {
-        return (vm1[0] == vm2[0] &&
-                vm1[1] == vm2[1] &&
-                vm1[2] == vm2[2])
+    func compare(viewModel1 vm1: [KSImageCarouselDisplayable?], viewModel2 vm2: [KSImageCarouselDisplayable?]) -> Bool {
+        
+        for i in 0..<vm1.count {
+            let img1 = vm1[i] as? UIImage
+            let img2 = vm2[i] as? UIImage
+            
+            if !compare(image1: img1, image2: img2) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    func compare(image1 img1: UIImage?, image2 img2: UIImage?) -> Bool {
+        
+        if img1 == nil && img2 == nil {
+            return true
+        } else {
+            
+            let data1 = UIImagePNGRepresentation(img1!)!
+            let data2 = UIImagePNGRepresentation(img2!)!
+            
+            return data1 == data2
+        }
+    }
+    
+    func createTestImage(_ img: TestImage) -> UIImage {
+        return UIImage(named: img.name, in: Bundle(for: KSImageCarouselTests.self), compatibleWith: nil)!
     }
     
 }

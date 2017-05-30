@@ -28,8 +28,8 @@ import Foundation
 
 protocol KSICCoordinator: class {
     var carousel: KSICImageScrollerViewController? { get }
-    var model: [String] { get }
-    var carouselViewModel: [String?] { get }
+    var model: [KSImageCarouselDisplayable] { get }
+    var carouselViewModel: [KSImageCarouselDisplayable?] { get }
     var currentPage: Int { get }
     
     func showCarousel()
@@ -63,7 +63,7 @@ extension KSICCoordinator {
 
 class KSICFiniteCoordinator: KSICCoordinator {
     
-    let model: [String]
+    let model: [KSImageCarouselDisplayable]
     
     private var _carousel: KSICImageScrollerViewController?
     var carousel: KSICImageScrollerViewController? {
@@ -81,7 +81,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
         return _currentPage
     }
     
-    var carouselViewModel: [String?] {
+    var carouselViewModel: [KSImageCarouselDisplayable?] {
         
         if model.count == 1 {
             return [nil,
@@ -107,7 +107,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
         }
     }
     
-    init(with model: [String], initialPage: Int) throws {
+    init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -165,7 +165,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
 
 class KSICInFiniteCoordinator: KSICCoordinator {
     
-    let model: [String]
+    let model: [KSImageCarouselDisplayable]
     
     var _carousel: KSICImageScrollerViewController?
     var carousel: KSICImageScrollerViewController? {
@@ -183,7 +183,7 @@ class KSICInFiniteCoordinator: KSICCoordinator {
         return _currentPage
     }
     
-    var carouselViewModel: [String?] {
+    var carouselViewModel: [KSImageCarouselDisplayable?] {
         if model.count == 1 {
             return [model[currentPage],
                     model[currentPage],
@@ -208,7 +208,7 @@ class KSICInFiniteCoordinator: KSICCoordinator {
         }
     }
     
-    init(with model: [String], initialPage: Int) throws {
+    init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
