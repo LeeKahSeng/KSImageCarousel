@@ -1,8 +1,8 @@
 //
-//  KSICImageScrollerViewController.swift
+//  KSICScrollerViewController.swift
 //  KSImageCarousel
 //
-//  Created by Lee Kah Seng on 28/05/2017.
+//  Created by Lee Kah Seng on 01/06/2017.
 //  Copyright © 2017 Lee Kah Seng. All rights reserved. (https://github.com/LeeKahSeng/KSImageCarousel)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,10 +23,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
+//
 
 import UIKit
 
-class KSICImageScrollerViewController: UIViewController {
+class KSICScrollerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

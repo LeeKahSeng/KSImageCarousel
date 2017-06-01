@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */; };
 		F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */; };
 		F99C31A01EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
 		F99C31A11EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
 		F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */; };
-		F9A678DE1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */; };
 		F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DF1EDAD96600AE2E0A /* KSICError.swift */; };
 		F9D158361ED5B8D200F4EAD7 /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */; };
 		F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */; };
@@ -29,10 +29,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICScrollerViewController.swift; sourceTree = "<group>"; };
 		F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSImageCarouselDisplayable.swift; sourceTree = "<group>"; };
 		F99C319F1EDD7EC400019996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICCoordinator.swift; sourceTree = "<group>"; };
-		F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageScrollerViewController.swift; sourceTree = "<group>"; };
 		F9A678DF1EDAD96600AE2E0A /* KSICError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICError.swift; sourceTree = "<group>"; };
 		F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSImageCarousel.h; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				F9A678DF1EDAD96600AE2E0A /* KSICError.swift */,
-				F9A678DD1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift */,
 				F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */,
 				F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */,
+				F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */,
-				F9A678DE1EDAD50700AE2E0A /* KSICImageScrollerViewController.swift in Sources */,
+				F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */,
 				F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */,
 				F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */,
 			);

@@ -30,7 +30,7 @@ import Foundation
 protocol KSICCoordinator: class {
     
     /// The carousel that being show on screen
-    var carousel: KSICImageScrollerViewController? { get }
+    var carousel: KSICScrollerViewController? { get }
     
     /// The model (images that need to be show on carousel)
     var model: [KSImageCarouselDisplayable] { get }
@@ -87,8 +87,8 @@ class KSICFiniteCoordinator: KSICCoordinator {
 
     let model: [KSImageCarouselDisplayable]
     
-    private var _carousel: KSICImageScrollerViewController?
-    var carousel: KSICImageScrollerViewController? {
+    private var _carousel: KSICScrollerViewController?
+    var carousel: KSICScrollerViewController? {
         return _carousel
     }
     
@@ -156,7 +156,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
     // MARK: KSICCoordinator conformation
     public func showCarousel() {
         //        let vm = viewModel(forPage: currentPage)
-        _carousel = KSICImageScrollerViewController()
+        _carousel = KSICScrollerViewController()
         //        carousel.delegate = self
     }
 
@@ -204,8 +204,8 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     
     let model: [KSImageCarouselDisplayable]
     
-    var _carousel: KSICImageScrollerViewController?
-    var carousel: KSICImageScrollerViewController? {
+    var _carousel: KSICScrollerViewController?
+    var carousel: KSICScrollerViewController? {
         return _carousel
     }
     
@@ -271,7 +271,7 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     // MARK: KSICCoordinator conformation
     public func showCarousel() {
         //        let vm = viewModel(forPage: currentPage)
-        _carousel = KSICImageScrollerViewController()
+        _carousel = KSICScrollerViewController()
         //        carousel.delegate = self
     }
     
