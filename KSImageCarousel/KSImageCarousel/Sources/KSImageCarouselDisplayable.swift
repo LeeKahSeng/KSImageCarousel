@@ -27,12 +27,12 @@
 import Foundation
 import UIKit
 
-protocol KSImageCarouselDisplayable {
+public protocol KSImageCarouselDisplayable {
     func createCarouselImage(completion: (UIImage) -> ())
 }
 
 extension UIImage: KSImageCarouselDisplayable {
-    func createCarouselImage(completion: (UIImage) -> ()) {
+    public func createCarouselImage(completion: (UIImage) -> ()) {
         completion(self)
     }
 }

@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import KSImageCarousel
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var containerView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Create model for carousel
+        let model = [UIImage(named: "red")!,
+                     UIImage(named: "green")!,
+                     UIImage(named: "blue")!,
+                     UIImage(named: "yellow")!,
+                     UIImage(named: "black")!,
+                     UIImage(named: "purple")!,
+                     ]
+        
+        if let coordinator = try? KSICFiniteCoordinator(with: model, initialPage: 0) {
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -83,7 +83,7 @@ extension KSICCoordinator {
 // MARK: -
 
 /// Carousel can only scroll until last page or first page when using this coordinator
-class KSICFiniteCoordinator: KSICCoordinator {
+public class KSICFiniteCoordinator: KSICCoordinator {
 
     let model: [KSImageCarouselDisplayable]
     
@@ -137,7 +137,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
     ///   - model: Model for carousel
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -200,7 +200,7 @@ class KSICFiniteCoordinator: KSICCoordinator {
 // MARK: -
 
 /// Carousel will be able to scroll infinitely when using this coordinator
-class KSICInFiniteCoordinator: KSICCoordinator {
+public class KSICInFiniteCoordinator: KSICCoordinator {
     
     let model: [KSImageCarouselDisplayable]
     
@@ -252,7 +252,7 @@ class KSICInFiniteCoordinator: KSICCoordinator {
     ///   - model: Model for carousel
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
