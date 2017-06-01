@@ -1,5 +1,5 @@
 //
-//  KSICScrollerViewController.swift
+//  Extensions.swift
 //  KSImageCarousel
 //
 //  Created by Lee Kah Seng on 01/06/2017.
@@ -25,39 +25,15 @@
 //
 //
 
-import UIKit
+import Foundation
 
-class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
-
-    lazy var scrollView: UIScrollView = UIScrollView()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .brown
-        configureScrollView()
+extension UIView {
+    func addSameSizeSubview(_ subview: UIView) {
+        self.addSubview(subview)
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        let widthContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[subview]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["subview": subview])
+        let heightContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[subview]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["subview": subview])
+        self.addConstraints(widthContraints)
+        self.addConstraints(heightContraints)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-    }
-
-    // MARK: - Private functions
-    private func configureScrollView() {
-        scrollView.backgroundColor = .gray
-        view.addSameSizeSubview(scrollView)
-        
-        // Configure scrollView
-        self.scrollView.isPagingEnabled = true
-        self.scrollView.showsHorizontalScrollIndicator = false
-        self.scrollView.showsVerticalScrollIndicator = false
-        self.scrollView.scrollsToTop = false
-        self.scrollView.delegate = self
-    }
-
 }

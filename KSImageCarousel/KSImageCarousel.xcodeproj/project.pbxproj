@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */; };
+		F96BF5B11EE026ED00E0E9E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */; };
 		F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */; };
 		F99C31A01EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
 		F99C31A11EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICScrollerViewController.swift; sourceTree = "<group>"; };
+		F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSImageCarouselDisplayable.swift; sourceTree = "<group>"; };
 		F99C319F1EDD7EC400019996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICCoordinator.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */,
 				F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */,
 				F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */,
+				F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96BF5B11EE026ED00E0E9E6 /* Extensions.swift in Sources */,
 				F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */,
 				F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */,
 				F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */,

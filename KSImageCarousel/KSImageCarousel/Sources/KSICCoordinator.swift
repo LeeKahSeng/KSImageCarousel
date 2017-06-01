@@ -86,16 +86,11 @@ extension KSICCoordinator {
     ///   - parentViewController: parent view controller of the carousel
     fileprivate func add(_ carousel: KSICScrollerViewController, to container: UIView, of parentViewController: UIViewController) {
         
-        container.addSubview(carousel.view)
         parentViewController.addChildViewController(carousel)
         carousel.didMove(toParentViewController: parentViewController)
         
         // Carousel to follow container size
-        carousel.view.translatesAutoresizingMaskIntoConstraints = false
-        let widthContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[carousel]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["carousel": carousel.view])
-        let heightContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[carousel]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["carousel": carousel.view])
-        container.addConstraints(widthContraints)
-        container.addConstraints(heightContraints)
+        container.addSameSizeSubview(carousel.view)
     }
 }
 
