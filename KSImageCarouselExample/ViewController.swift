@@ -25,7 +25,7 @@ class ViewController: UIViewController {
                      UIImage(named: "purple")!]
         
         // Use coordinator to show the carousel
-        if let coordinator = try? KSICInFiniteCoordinator(with: model, initialPage: 0) {
+        if let coordinator = try? KSICInfiniteCoordinator(with: model, initialPage: 0) {
             coordinator.showCarousel(inside: containerView, of: self)
         }
     }

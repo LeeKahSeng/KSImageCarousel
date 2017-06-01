@@ -221,7 +221,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 // MARK: -
 
 /// Carousel will be able to scroll infinitely when using this coordinator
-public class KSICInFiniteCoordinator: KSICCoordinator {
+public class KSICInfiniteCoordinator: KSICCoordinator {
     
     let model: [KSImageCarouselDisplayable]
     

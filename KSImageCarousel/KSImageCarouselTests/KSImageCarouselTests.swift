@@ -59,8 +59,8 @@ class KSImageCarouselTests: XCTestCase {
         let coordinator = try? KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         XCTAssertNotNil(coordinator)
         
-        // Test KSICInFiniteCoordinator
-        let coordinator2 = try? KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        // Test KSICInfiniteCoordinator
+        let coordinator2 = try? KSICInfiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         XCTAssertNotNil(coordinator2)
     }
     
@@ -83,14 +83,14 @@ class KSImageCarouselTests: XCTestCase {
             XCTAssertEqual(error as? CoordinatorError, CoordinatorError.emptyModel)
         }
 
-        // Test KSICInFiniteCoordinator
+        // Test KSICInfiniteCoordinator
         // Out of range
-        XCTAssertThrowsError(try KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)) { error in
+        XCTAssertThrowsError(try KSICInfiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)) { error in
             XCTAssertEqual(error as? CoordinatorError, CoordinatorError.pageOutOfRange)
         }
         
         // Empty model
-        XCTAssertThrowsError(try KSICInFiniteCoordinator(with: [], initialPage: 0)) { error in
+        XCTAssertThrowsError(try KSICInfiniteCoordinator(with: [], initialPage: 0)) { error in
             XCTAssertEqual(error as? CoordinatorError, CoordinatorError.emptyModel)
         }
     }
@@ -212,7 +212,7 @@ class KSImageCarouselTests: XCTestCase {
                           createTestImage(.blue)]
         let dummyInitialPage = 0
         
-        let coordinator = try! KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        let coordinator = try! KSICInfiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         let lastPage = dummyModel.count - 1
         
         // Test initial view model value
@@ -278,7 +278,7 @@ class KSImageCarouselTests: XCTestCase {
         let dummyModel = [createTestImage(.black)]
         let dummyInitialPage = 0
         
-        let coordinator = try! KSICInFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        let coordinator = try! KSICInfiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
         
         // Test initial view model value
         let currentPage = dummyInitialPage
