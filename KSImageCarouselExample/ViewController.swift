@@ -22,11 +22,11 @@ class ViewController: UIViewController {
                      UIImage(named: "blue")!,
                      UIImage(named: "yellow")!,
                      UIImage(named: "black")!,
-                     UIImage(named: "purple")!,
-                     ]
+                     UIImage(named: "purple")!]
         
-        if let coordinator = try? KSICFiniteCoordinator(with: model, initialPage: 0) {
-            
+        // Use coordinator to show the carousel
+        if let coordinator = try? KSICInFiniteCoordinator(with: model, initialPage: 0) {
+            coordinator.showCarousel(inside: containerView, of: self)
         }
     }
 
@@ -34,7 +34,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

@@ -26,7 +26,6 @@
 
 import Foundation
 
-
 protocol KSICCoordinator: class {
     
     /// The carousel that being show on screen
@@ -44,7 +43,7 @@ protocol KSICCoordinator: class {
     var currentPage: Int { get }
     
     /// Add the carousel to it's container
-    func showCarousel()
+    func showCarousel(inside container: UIView, of parentViewController: UIViewController)
     
     /// Go to next page
     func nextPage()
@@ -77,6 +76,26 @@ extension KSICCoordinator {
     /// - Returns: True -> In range | False -> out of range
     fileprivate func isPageInRange(_ page: Int) -> Bool {
         return  (page >= firstPage && page <= lastPage)
+    }
+
+    /// Add carousel as child view controller and follow the size of the container view
+    ///
+    /// - Parameters:
+    ///   - carousel: carousel to be added as child view controller
+    ///   - container: container that contain the carousel
+    ///   - parentViewController: parent view controller of the carousel
+    fileprivate func add(_ carousel: KSICScrollerViewController, to container: UIView, of parentViewController: UIViewController) {
+        
+        container.addSubview(carousel.view)
+        parentViewController.addChildViewController(carousel)
+        carousel.didMove(toParentViewController: parentViewController)
+        
+        // Carousel to follow container size
+        carousel.view.translatesAutoresizingMaskIntoConstraints = false
+        let widthContraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[carousel]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["carousel": carousel.view])
+        let heightContraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(0)-[carousel]-(0)-|", options: .alignAllCenterX, metrics: nil, views: ["carousel": carousel.view])
+        container.addConstraints(widthContraints)
+        container.addConstraints(heightContraints)
     }
 }
 
@@ -154,10 +173,12 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     // MARK: KSICCoordinator conformation
-    public func showCarousel() {
+    public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
+        
         //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController()
         //        carousel.delegate = self
+        add(_carousel!, to: container, of: parentViewController)
     }
 
     func nextPage() {
@@ -269,10 +290,11 @@ public class KSICInFiniteCoordinator: KSICCoordinator {
     }
     
     // MARK: KSICCoordinator conformation
-    public func showCarousel() {
+    public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
         //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController()
         //        carousel.delegate = self
+        add(_carousel!, to: container, of: parentViewController)
     }
     
     func nextPage() {
