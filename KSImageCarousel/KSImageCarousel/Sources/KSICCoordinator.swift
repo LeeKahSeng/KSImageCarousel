@@ -171,7 +171,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
         
         //        let vm = viewModel(forPage: currentPage)
-        _carousel = KSICScrollerViewController()
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
         //        carousel.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }
@@ -287,7 +287,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
         //        let vm = viewModel(forPage: currentPage)
-        _carousel = KSICScrollerViewController()
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
         //        carousel.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }

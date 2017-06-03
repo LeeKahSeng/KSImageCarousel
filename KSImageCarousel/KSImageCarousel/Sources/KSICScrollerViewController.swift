@@ -29,22 +29,58 @@ import UIKit
 
 class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
 
+    // View model should always have 3 elements
+    private let viewModelCount = 3
+    
     lazy var scrollView: UIScrollView = UIScrollView()
+    lazy var imageViews: [UIImageView] = [UIImageView(), UIImageView(), UIImageView()]
+    var tapGestureRecognizers: [UITapGestureRecognizer?] = []
+
+    var viewModel: [KSImageCarouselDisplayable?] {
+        didSet {
+            if viewModel.count != viewModelCount {
+                fatalError("View model must have \(viewModelCount) elements")
+            }
+            viewModelDidChanged()
+        }
+    }
+    
+    init(withViewModel vm: [KSImageCarouselDisplayable?]) {
+        
+        viewModel = vm
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("KSICScrollerViewController should not be use at interface builder. Please use KSICFiniteCoordinator / KSICInfiniteCoordinator")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .brown
+        
         configureScrollView()
+        showViewModel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        // Set scroll view content size
+        let scrollViewWidth = scrollView.frame.width
+        let scrollViewHeight = scrollView.frame.height
+        scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(viewModelCount), height: scrollViewHeight)
+        
+        // Layout image view in scroll view
+        for (index, imageView) in imageViews.enumerated() {
+            
+            // Set image view frame
+            imageView.frame = CGRect(x: scrollViewWidth * CGFloat(index), y: 0, width: scrollViewWidth, height: scrollViewHeight)
+            scrollView.addSubview(imageView)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
     }
 
     // MARK: - Private functions
@@ -58,6 +94,40 @@ class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.scrollsToTop = false
         self.scrollView.delegate = self
+        
+        // Add tap gesture recognizer to image view
+        for imageView in imageViews {
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTapped(regconizer:)))
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(tapGestureRecognizer)
+
+            // Keep instance of tap gesture recognizer in array
+            tapGestureRecognizers.append(tapGestureRecognizer)
+        }
+    }
+    
+    private func showViewModel() {
+        
+        // Set image from view model to image view
+        for (index, imageView) in imageViews.enumerated() {
+            viewModel[index]?.createCarouselImage(completion: { (image) in
+                imageView.image = image
+            })
+        }
+    }
+    
+    private func viewModelDidChanged() {
+        // Show image in scroll view
+        showViewModel()
+    }
+    
+    @objc private func imageViewDidTapped(regconizer: UITapGestureRecognizer) {
+        
+        let index = tapGestureRecognizers.index { (reg) -> Bool in
+            return (reg == regconizer)
+        }
+        print("tap: \(index)")
     }
 
 }
