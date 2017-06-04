@@ -27,14 +27,24 @@
 
 import UIKit
 
-class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
+protocol KSICScrollerViewControllerDelegate {
+    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController)
+    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController)
+}
+
+class KSICScrollerViewController: UIViewController {
 
     // View model should always have 3 elements
     private let viewModelCount = 3
     
+    var delegate: KSICScrollerViewControllerDelegate?
+    
     lazy var scrollView: UIScrollView = UIScrollView()
     lazy var imageViews: [UIImageView] = [UIImageView(), UIImageView(), UIImageView()]
     var tapGestureRecognizers: [UITapGestureRecognizer?] = []
+    
+    /// This will be use to determine wether scroll view had scrolled to next page or previous page after scroll ended
+    var contentOffsetX: CGFloat = 0
 
     var viewModel: [KSImageCarouselDisplayable?] {
         didSet {
@@ -83,8 +93,8 @@ class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Private functions
-    private func configureScrollView() {
+    // MARK: - fileprivate functions
+    fileprivate func configureScrollView() {
         scrollView.backgroundColor = .gray
         view.addSameSizeSubview(scrollView)
         
@@ -107,7 +117,7 @@ class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func showViewModel() {
+    fileprivate func showViewModel() {
         
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
@@ -117,17 +127,53 @@ class KSICScrollerViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
-    private func viewModelDidChanged() {
+    fileprivate func viewModelDidChanged() {
         // Show image in scroll view
         showViewModel()
     }
     
-    @objc private func imageViewDidTapped(regconizer: UITapGestureRecognizer) {
+    fileprivate func scrollViewDidEndScrolling(withNewContentOffsetX newX: CGFloat, oldContentOffsetX oldX: CGFloat) {
+       // TODO: Add Unit test for this
+        
+        if newX > oldX {
+            // When the new content offset x is greater than half
+            print("next")
+            // Trigger delegate
+            delegate?.scrollerViewControllerDidGotoNextPage(self)
+        } else if newX < oldX {
+            // Previous page
+            print("prev")
+            // Trigger delegate
+            delegate?.scrollerViewControllerDidGotoPreviousPage(self)
+        }
+        
+        contentOffsetX = newX
+    }
+    
+    @objc fileprivate func imageViewDidTapped(regconizer: UITapGestureRecognizer) {
         
         let index = tapGestureRecognizers.index { (reg) -> Bool in
             return (reg == regconizer)
         }
         print("tap: \(index)")
     }
+}
 
+extension KSICScrollerViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        // Track the scroll view content offset when begin scrolling
+        // This will be use to determine wether scroll view had scrolled to next page or previous page after scroll ended
+        contentOffsetX = scrollView.contentOffset.x
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        // This delegate will trigger after scroll view finish scrolling due to user interaction
+        scrollViewDidEndScrolling(withNewContentOffsetX: scrollView.contentOffset.x, oldContentOffsetX: contentOffsetX)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        // This delegate will trigger after scroll view is scrolled programatically using scrollRectToVisible()
+        scrollViewDidEndScrolling(withNewContentOffsetX: scrollView.contentOffset.x, oldContentOffsetX: contentOffsetX)
+    }
 }

@@ -26,7 +26,7 @@
 
 import Foundation
 
-protocol KSICCoordinator: class {
+protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     
     /// The carousel that being show on screen
     var carousel: KSICScrollerViewController? { get }
@@ -91,6 +91,15 @@ extension KSICCoordinator {
         
         // Carousel to follow container size
         container.addSameSizeSubview(carousel.view)
+    }
+    
+    // MARK: KSICScrollerViewControllerDelegate
+    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+        print("NEXT")
+    }
+    
+    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+        print("PREV")
     }
 }
 
@@ -172,7 +181,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         
         //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
-        //        carousel.delegate = self
+        _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }
 
@@ -288,7 +297,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
         //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
-        //        carousel.delegate = self
+        _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }
     
