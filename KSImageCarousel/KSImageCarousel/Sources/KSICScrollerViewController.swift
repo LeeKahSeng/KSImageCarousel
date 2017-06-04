@@ -30,6 +30,7 @@ import UIKit
 protocol KSICScrollerViewControllerDelegate {
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController)
+    func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController)
 }
 
 class KSICScrollerViewController: UIViewController {
@@ -51,7 +52,9 @@ class KSICScrollerViewController: UIViewController {
             if viewModel.count != viewModelCount {
                 fatalError("View model must have \(viewModelCount) elements")
             }
-            viewModelDidChanged()
+            
+            // Update scroll view with new view model
+            setViewModelToScrollView()
         }
     }
     
@@ -87,13 +90,24 @@ class KSICScrollerViewController: UIViewController {
             scrollView.addSubview(imageView)
         }
         
-        // After finish laying out image view, display center page (as first page) to user.
-        scrollToCenterPage()
+        // After finish laying out image view, trigger delegate to coordinator to perform specific action
+        delegate?.scrollerViewControllerDidFinishLayoutSubviews(self)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - internal functions
+    func scrollToCenterPage() {
+        // TODO: Add unit test for coordinator to make sure scrollToCenterPage being call
+        let scrollViewWidth = scrollView.bounds.size.width
+        let scrollViewHeight = scrollView.bounds.size.height
+        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        
+        // Keep track of the latest scroll view content offset x value
+        contentOffsetX = scrollView.contentOffset.x
     }
 
     // MARK: - fileprivate functions
@@ -130,37 +144,16 @@ class KSICScrollerViewController: UIViewController {
         }
     }
     
-    fileprivate func viewModelDidChanged() {
-        
-        // Show image in scroll view
-        setViewModelToScrollView()
-        
-        // Center page is always to page to show to user. Thus scroll to center page
-        scrollToCenterPage()
-    }
-    
-    fileprivate func scrollToCenterPage() {
-
-        let scrollViewWidth = scrollView.bounds.size.width
-        let scrollViewHeight = scrollView.bounds.size.height
-        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
-        
-        // Keep track of the latest scroll view content offset x value
-        contentOffsetX = scrollView.contentOffset.x
-    }
-    
     fileprivate func scrollViewDidEndScrolling(withNewContentOffsetX newX: CGFloat, oldContentOffsetX oldX: CGFloat) {
        // TODO: Add Unit test for this
         
         if newX > oldX {
-            // When the new content offset x is greater than half
-            print("next")
-            // Trigger delegate
+            // Next page
+            // Trigger delegate and let coordinator decide what to do
             delegate?.scrollerViewControllerDidGotoNextPage(self)
         } else if newX < oldX {
             // Previous page
-            print("prev")
-            // Trigger delegate
+            // Trigger delegate and let coordinator decide what to do
             delegate?.scrollerViewControllerDidGotoPreviousPage(self)
         }
         

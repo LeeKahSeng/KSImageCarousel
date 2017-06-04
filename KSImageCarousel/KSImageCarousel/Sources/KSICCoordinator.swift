@@ -92,15 +92,6 @@ extension KSICCoordinator {
         // Carousel to follow container size
         container.addSameSizeSubview(carousel.view)
     }
-    
-    // MARK: KSICScrollerViewControllerDelegate
-    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
-        nextPage()
-    }
-    
-    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
-        previousPage()
-    }
 }
 
 // MARK: -
@@ -219,7 +210,21 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         
         _currentPage = p
     }
+}
 
+// MARK: KSICScrollerViewControllerDelegate
+extension KSICCoordinator where Self == KSICFiniteCoordinator {
+    func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
+        
+    }
+    
+    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+        nextPage()
+    }
+    
+    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+        previousPage()
+    }
 }
 
 // MARK: -
@@ -236,7 +241,11 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     var _currentPage: Int {
         didSet {
+            // Update view model of carousel
             _carousel?.viewModel = carouselViewModel
+            
+            // Center page should always be the current visible page
+            _carousel?.scrollToCenterPage()
         }
     }
     var currentPage: Int {
@@ -293,7 +302,6 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
         _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
@@ -332,6 +340,22 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         }
         
         _currentPage = p
+    }
+}
+
+// MARK: KSICScrollerViewControllerDelegate
+extension KSICCoordinator where Self == KSICInfiniteCoordinator {
+    func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
+        // Center page should always be the current visible page
+        carousel?.scrollToCenterPage()
+    }
+    
+    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+        nextPage()
+    }
+    
+    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+        previousPage()
     }
 }
 
