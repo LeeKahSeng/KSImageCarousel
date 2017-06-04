@@ -69,7 +69,7 @@ class KSICScrollerViewController: UIViewController {
         super.viewDidLoad()
         
         configureScrollView()
-        showViewModel()
+        setViewModelToScrollView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -86,6 +86,9 @@ class KSICScrollerViewController: UIViewController {
             imageView.frame = CGRect(x: scrollViewWidth * CGFloat(index), y: 0, width: scrollViewWidth, height: scrollViewHeight)
             scrollView.addSubview(imageView)
         }
+        
+        // After finish laying out image view, display center page (as first page) to user.
+        scrollToCenterPage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,7 +120,7 @@ class KSICScrollerViewController: UIViewController {
         }
     }
     
-    fileprivate func showViewModel() {
+    fileprivate func setViewModelToScrollView() {
         
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
@@ -128,8 +131,22 @@ class KSICScrollerViewController: UIViewController {
     }
     
     fileprivate func viewModelDidChanged() {
+        
         // Show image in scroll view
-        showViewModel()
+        setViewModelToScrollView()
+        
+        // Center page is always to page to show to user. Thus scroll to center page
+        scrollToCenterPage()
+    }
+    
+    fileprivate func scrollToCenterPage() {
+
+        let scrollViewWidth = scrollView.bounds.size.width
+        let scrollViewHeight = scrollView.bounds.size.height
+        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        
+        // Keep track of the latest scroll view content offset x value
+        contentOffsetX = scrollView.contentOffset.x
     }
     
     fileprivate func scrollViewDidEndScrolling(withNewContentOffsetX newX: CGFloat, oldContentOffsetX oldX: CGFloat) {

@@ -95,11 +95,11 @@ extension KSICCoordinator {
     
     // MARK: KSICScrollerViewControllerDelegate
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
-        print("NEXT")
+        nextPage()
     }
     
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
-        print("PREV")
+        previousPage()
     }
 }
 
@@ -236,9 +236,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     var _currentPage: Int {
         didSet {
-            print("Trigger callback on carousel due to model view changed")
-            //                let vm = carouselViewModel
-            //                carousel?.viewModelDidChanged?(vm)
+            _carousel?.viewModel = carouselViewModel
         }
     }
     var currentPage: Int {
