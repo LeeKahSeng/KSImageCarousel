@@ -26,7 +26,7 @@
 
 import Foundation
 
-protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
+public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     
     /// The carousel that being show on screen
     var carousel: KSICScrollerViewController? { get }
@@ -99,10 +99,10 @@ extension KSICCoordinator {
 /// Carousel can only scroll until last page or first page when using this coordinator
 public class KSICFiniteCoordinator: KSICCoordinator {
 
-    let model: [KSImageCarouselDisplayable]
+    public let model: [KSImageCarouselDisplayable]
     
     private var _carousel: KSICScrollerViewController?
-    var carousel: KSICScrollerViewController? {
+    public var carousel: KSICScrollerViewController? {
         return _carousel
     }
     
@@ -119,11 +119,11 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         }
     }
     
-    var currentPage: Int {
+    public var currentPage: Int {
         return _currentPage
     }
     
-    var carouselViewModel: [KSImageCarouselDisplayable] {
+    public var carouselViewModel: [KSImageCarouselDisplayable] {
         
         if model.count == 1 {
             // When model have only 1 element
@@ -185,7 +185,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         add(_carousel!, to: container, of: parentViewController)
     }
 
-    func nextPage() {
+    public func nextPage() {
         if currentPage == lastPage {
             return
         } else {
@@ -194,7 +194,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         }
     }
     
-    func previousPage() {
+    public func previousPage() {
         if currentPage == firstPage {
             return
         } else {
@@ -239,17 +239,17 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICFiniteCoordinator {
-    func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel to subview that user should see
         scrollCarouselToDesireSubview()
     }
     
-    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
         // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         nextPage()
     }
     
-    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
         // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
     }
@@ -260,10 +260,10 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
 /// Carousel will be able to scroll infinitely when using this coordinator
 public class KSICInfiniteCoordinator: KSICCoordinator {
     
-    let model: [KSImageCarouselDisplayable]
+    public let model: [KSImageCarouselDisplayable]
     
     private var _carousel: KSICScrollerViewController?
-    var carousel: KSICScrollerViewController? {
+    public var carousel: KSICScrollerViewController? {
         return _carousel
     }
     
@@ -279,11 +279,11 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
             scrollCarouselToDesireSubview()
         }
     }
-    var currentPage: Int {
+    public var currentPage: Int {
         return _currentPage
     }
     
-    var carouselViewModel: [KSImageCarouselDisplayable] {
+    public var carouselViewModel: [KSImageCarouselDisplayable] {
         if model.count == 1 {
             // When model only have 1 element, next page & previous page is same as current page
             return [model[currentPage],
@@ -338,7 +338,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         add(_carousel!, to: container, of: parentViewController)
     }
     
-    func nextPage() {
+    public func nextPage() {
         if currentPage == lastPage {
             try! goto(page: firstPage)
         } else {
@@ -347,7 +347,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         }
     }
     
-    func previousPage() {
+    public func previousPage() {
         if currentPage == firstPage {
             try! goto(page: lastPage)
         } else {
@@ -384,17 +384,17 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
 
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICInfiniteCoordinator {
-    func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel to subview that user should see
         scrollCarouselToDesireSubview()
     }
     
-    func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
         // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         nextPage()
     }
     
-    func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+    public func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
         // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
     }

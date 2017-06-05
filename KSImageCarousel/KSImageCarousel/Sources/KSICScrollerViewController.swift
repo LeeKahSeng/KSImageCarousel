@@ -27,13 +27,13 @@
 
 import UIKit
 
-protocol KSICScrollerViewControllerDelegate {
+public protocol KSICScrollerViewControllerDelegate {
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController)
 }
 
-class KSICScrollerViewController: UIViewController {
+public class KSICScrollerViewController: UIViewController {
     
     var delegate: KSICScrollerViewControllerDelegate?
     
@@ -68,18 +68,18 @@ class KSICScrollerViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("KSICScrollerViewController should not be use at interface builder. Please use KSICFiniteCoordinator / KSICInfiniteCoordinator")
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         configureScrollView()
         setViewModelToScrollView()
     }
     
-    override func viewDidLayoutSubviews() {
+    override public func viewDidLayoutSubviews() {
         
         // Set scroll view content size
         let scrollViewWidth = scrollView.frame.width
@@ -99,7 +99,7 @@ class KSICScrollerViewController: UIViewController {
         delegate?.scrollerViewControllerDidFinishLayoutSubviews(self)
     }
 
-    override func didReceiveMemoryWarning() {
+    override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -204,18 +204,18 @@ class KSICScrollerViewController: UIViewController {
 
 extension KSICScrollerViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // Track the scroll view content offset when begin scrolling
         // This will be use to determine wether scroll view had scrolled to next page or previous page after scroll ended
         contentOffsetX = scrollView.contentOffset.x
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // This delegate will trigger after scroll view finish scrolling due to user interaction
         scrollViewDidEndScrolling(withNewContentOffsetX: scrollView.contentOffset.x, oldContentOffsetX: contentOffsetX)
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         // This delegate will trigger after scroll view is scrolled programatically using scrollRectToVisible()
         scrollViewDidEndScrolling(withNewContentOffsetX: scrollView.contentOffset.x, oldContentOffsetX: contentOffsetX)
     }
