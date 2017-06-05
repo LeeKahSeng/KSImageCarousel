@@ -31,6 +31,7 @@ public protocol KSICScrollerViewControllerDelegate {
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController)
+    func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController)
 }
 
 public class KSICScrollerViewController: UIViewController {
@@ -198,7 +199,10 @@ public class KSICScrollerViewController: UIViewController {
         let index = tapGestureRecognizers.index { (reg) -> Bool in
             return (reg == regconizer)
         }
-        print("tap: \(index)")
+        
+        if let i = index {
+            delegate?.scrollerViewControllerDidTappedImageView(at: i, viewController: self)
+        }
     }
 }
 

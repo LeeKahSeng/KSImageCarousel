@@ -26,6 +26,19 @@
 
 import Foundation
 
+public protocol KSICCoordinatorDelegate {
+    
+    /// Method triggered when image of carousel being tapped
+    ///
+    /// - Parameter index: model index of the tapped image
+    func carouselDidTappedImage(at index: Int, coordinator: KSICCoordinator)
+}
+
+extension KSICCoordinatorDelegate {
+    // Optional delegte method
+    public func carouselDidTappedImage(at index: Int, coordinator: KSICCoordinator) {}
+}
+
 public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     
     /// The carousel that being show on screen
@@ -33,6 +46,9 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     
     /// The model (images that need to be show on carousel)
     var model: [KSImageCarouselDisplayable] { get }
+    
+    /// KSICCoordinator optional delegte
+    var delegate: KSICCoordinatorDelegate? { get set }
     
     /// View model for the carousel.
     /// The 3 elements consists of [prev page element, current page element, next page element]
@@ -98,6 +114,8 @@ extension KSICCoordinator {
 
 /// Carousel can only scroll until last page or first page when using this coordinator
 public class KSICFiniteCoordinator: KSICCoordinator {
+    
+    public var delegate: KSICCoordinatorDelegate?
 
     public let model: [KSImageCarouselDisplayable]
     
@@ -253,12 +271,18 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
         // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
     }
+    
+    public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
+        delegate?.carouselDidTappedImage(at: currentPage, coordinator: self)
+    }
 }
 
 // MARK: -
 
 /// Carousel will be able to scroll infinitely when using this coordinator
 public class KSICInfiniteCoordinator: KSICCoordinator {
+    
+    public var delegate: KSICCoordinatorDelegate?
     
     public let model: [KSImageCarouselDisplayable]
     
@@ -397,6 +421,10 @@ extension KSICCoordinator where Self == KSICInfiniteCoordinator {
     public func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
         // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
+    }
+    
+    public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
+        delegate?.carouselDidTappedImage(at: currentPage, coordinator: self)
     }
 }
 
