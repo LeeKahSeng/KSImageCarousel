@@ -234,12 +234,12 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     let model: [KSImageCarouselDisplayable]
     
-    var _carousel: KSICScrollerViewController?
+    private var _carousel: KSICScrollerViewController?
     var carousel: KSICScrollerViewController? {
         return _carousel
     }
     
-    var _currentPage: Int {
+    private var _currentPage: Int {
         didSet {
             // Update view model of carousel
             _carousel?.viewModel = carouselViewModel
