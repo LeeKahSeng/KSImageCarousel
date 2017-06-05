@@ -34,33 +34,37 @@ protocol KSICScrollerViewControllerDelegate {
 }
 
 class KSICScrollerViewController: UIViewController {
-
-    // View model should always have 3 elements
-    private let viewModelCount = 3
     
     var delegate: KSICScrollerViewControllerDelegate?
     
-    lazy var scrollView: UIScrollView = UIScrollView()
-    lazy var imageViews: [UIImageView] = [UIImageView(), UIImageView(), UIImageView()]
-    var tapGestureRecognizers: [UITapGestureRecognizer?] = []
+    lazy fileprivate var scrollView: UIScrollView = UIScrollView()
+    fileprivate var imageViews: [UIImageView] = []
+    fileprivate var tapGestureRecognizers: [UITapGestureRecognizer?] = []
     
     /// This will be use to determine wether scroll view had scrolled to next page or previous page after scroll ended
-    var contentOffsetX: CGFloat = 0
+    fileprivate var contentOffsetX: CGFloat = 0
+    
+    private var imageViewCount: Int {
+        return viewModel.count
+    }
 
-    var viewModel: [KSImageCarouselDisplayable?] {
+    var viewModel: [KSImageCarouselDisplayable] {
         didSet {
-            if viewModel.count != viewModelCount {
-                fatalError("View model must have \(viewModelCount) elements")
-            }
-            
             // Update scroll view with new view model
             setViewModelToScrollView()
         }
     }
     
-    init(withViewModel vm: [KSImageCarouselDisplayable?]) {
+    init(withViewModel vm: [KSImageCarouselDisplayable]) {
         
         viewModel = vm
+        
+        // Image views that later will be added to scroll view as subviews
+        // The number of subviews needed will be same as number of view models provided
+        for _ in vm.enumerated() {
+            imageViews.append(UIImageView())
+        }
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,13 +84,14 @@ class KSICScrollerViewController: UIViewController {
         // Set scroll view content size
         let scrollViewWidth = scrollView.frame.width
         let scrollViewHeight = scrollView.frame.height
-        scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(viewModelCount), height: scrollViewHeight)
+        scrollView.contentSize = CGSize(width: scrollViewWidth * CGFloat(imageViewCount), height: scrollViewHeight)
         
         // Layout image view in scroll view
-        for (index, imageView) in imageViews.enumerated() {
+        for i in 0..<imageViewCount {
             
             // Set image view frame
-            imageView.frame = CGRect(x: scrollViewWidth * CGFloat(index), y: 0, width: scrollViewWidth, height: scrollViewHeight)
+            let imageView = imageViews[i]
+            imageView.frame = CGRect(x: scrollViewWidth * CGFloat(i), y: 0, width: scrollViewWidth, height: scrollViewHeight)
             scrollView.addSubview(imageView)
         }
         
@@ -100,11 +105,40 @@ class KSICScrollerViewController: UIViewController {
     }
     
     // MARK: - internal functions
-    func scrollToCenterPage() {
-        // TODO: Add unit test for coordinator to make sure scrollToCenterPage being call
+    func scrollToCenterSubview() {
+        if imageViewCount < 3 {
+            fatalError("scrollToCenterSubview() should only be called when viewModel have at least 3 elements.")
+        }
+        
         let scrollViewWidth = scrollView.bounds.size.width
         let scrollViewHeight = scrollView.bounds.size.height
         scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        
+        // Keep track of the latest scroll view content offset x value
+        contentOffsetX = scrollView.contentOffset.x
+    }
+    
+    func scrollToFirstSubview() {
+        if imageViewCount < 1 {
+            fatalError("scrollToFirstSubview() should only be called when viewModel have at least 1 element.")
+        }
+        
+        let scrollViewWidth = scrollView.bounds.size.width
+        let scrollViewHeight = scrollView.bounds.size.height
+        scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        
+        // Keep track of the latest scroll view content offset x value
+        contentOffsetX = scrollView.contentOffset.x
+    }
+    
+    func scrollToLastSubview() {
+        if imageViewCount < 1 {
+            fatalError("scrollToLastSubview() should only be called when viewModel have at least 1 element.")
+        }
+        
+        let scrollViewWidth = scrollView.bounds.size.width
+        let scrollViewHeight = scrollView.bounds.size.height
+        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * CGFloat(imageViewCount - 1), y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
         
         // Keep track of the latest scroll view content offset x value
         contentOffsetX = scrollView.contentOffset.x
@@ -138,15 +172,14 @@ class KSICScrollerViewController: UIViewController {
         
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
-            viewModel[index]?.createCarouselImage(completion: { (image) in
+            viewModel[index].createCarouselImage(completion: { (image) in
                 imageView.image = image
             })
         }
     }
     
     fileprivate func scrollViewDidEndScrolling(withNewContentOffsetX newX: CGFloat, oldContentOffsetX oldX: CGFloat) {
-       // TODO: Add Unit test for this
-        
+        // TODO: Add unit test to make sure delegate trigger correctly
         if newX > oldX {
             // Next page
             // Trigger delegate and let coordinator decide what to do

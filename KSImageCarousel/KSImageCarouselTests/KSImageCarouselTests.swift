@@ -111,7 +111,7 @@ class KSImageCarouselTests: XCTestCase {
         
         // Test initial view model value
         var currentPage = dummyInitialPage
-        var expectedViewModel = [nil, dummyModel[currentPage], dummyModel[currentPage + 1]]
+        var expectedViewModel = [dummyModel[currentPage], dummyModel[currentPage + 1], dummyModel[currentPage + 2]]
         var actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel))
         
@@ -135,7 +135,7 @@ class KSImageCarouselTests: XCTestCase {
         
         // Test view model value
         currentPage = dummyModel.count - 1
-        expectedViewModel = [dummyModel[currentPage - 1], dummyModel[currentPage], nil]
+        expectedViewModel = [dummyModel[currentPage - 2], dummyModel[currentPage - 1], dummyModel[currentPage]]
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
         
@@ -161,7 +161,7 @@ class KSImageCarouselTests: XCTestCase {
         
         // Test view model value
         currentPage = 0
-        expectedViewModel = [nil, dummyModel[currentPage], dummyModel[currentPage + 1]]
+        expectedViewModel = [dummyModel[currentPage], dummyModel[currentPage + 1], dummyModel[currentPage + 2]]
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }
@@ -175,7 +175,7 @@ class KSImageCarouselTests: XCTestCase {
      
         // Test initial view model value
         let currentPage = dummyInitialPage
-        let expectedViewModel = [nil, dummyModel[currentPage], nil]
+        let expectedViewModel = [dummyModel[currentPage]]
         var actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
         
@@ -310,11 +310,11 @@ class KSImageCarouselTests: XCTestCase {
 
     
     // MARK: - Utilities
-    func compare(viewModel1 vm1: [KSImageCarouselDisplayable?], viewModel2 vm2: [KSImageCarouselDisplayable?]) -> Bool {
+    func compare(viewModel1 vm1: [KSImageCarouselDisplayable], viewModel2 vm2: [KSImageCarouselDisplayable]) -> Bool {
         
         for i in 0..<vm1.count {
-            let img1 = vm1[i] as? UIImage
-            let img2 = vm2[i] as? UIImage
+            let img1 = vm1[i] as! UIImage
+            let img2 = vm2[i] as! UIImage
             
             if !compare(image1: img1, image2: img2) {
                 return false
@@ -324,17 +324,12 @@ class KSImageCarouselTests: XCTestCase {
         return true
     }
     
-    func compare(image1 img1: UIImage?, image2 img2: UIImage?) -> Bool {
+    func compare(image1 img1: UIImage, image2 img2: UIImage) -> Bool {
         
-        if img1 == nil && img2 == nil {
-            return true
-        } else {
-            
-            let data1 = UIImagePNGRepresentation(img1!)!
-            let data2 = UIImagePNGRepresentation(img2!)!
-            
-            return data1 == data2
-        }
+        let data1 = UIImagePNGRepresentation(img1)!
+        let data2 = UIImagePNGRepresentation(img2)!
+        
+        return data1 == data2
     }
     
     func createTestImage(_ img: TestImage) -> UIImage {

@@ -34,21 +34,21 @@ protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     /// The model (images that need to be show on carousel)
     var model: [KSImageCarouselDisplayable] { get }
     
-    /// View model for the carousel, this array will always have 3 elements.
+    /// View model for the carousel.
     /// The 3 elements consists of [prev page element, current page element, next page element]
-    /// nil in carouselViewModel indicates that no more data to show and carousel will not be able to scroll to next page / previous page anymore
-    var carouselViewModel: [KSImageCarouselDisplayable?] { get }
+    /// If model only have less than 3 element, view model will have less than 3 element as well
+    var carouselViewModel: [KSImageCarouselDisplayable] { get }
     
-    /// Current page of the carousel
+    /// Page (index) of model that currently visible to user
     var currentPage: Int { get }
     
     /// Add the carousel to it's container
     func showCarousel(inside container: UIView, of parentViewController: UIViewController)
     
-    /// Go to next page
+    /// Go to next page - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
     func nextPage()
     
-    /// Go to previous page
+    /// Go to previous page - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
     func previousPage()
 }
 
@@ -108,9 +108,14 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     private var _currentPage: Int {
         didSet {
-            print("Trigger callback on carousel due to model view changed")
-            //                let vm = carouselViewModel
-            //                carousel?.viewModelDidChanged?(vm)
+            
+            // Note: Everytime current page being set, we will update carousel's viewModel (which will update images in carousel) and scroll carousel to subview that user should see
+            
+            // Update view model of carousel
+            _carousel?.viewModel = carouselViewModel
+            
+            // Scroll carousel to subview that user should see
+            scrollCarouselToDesireSubview()
         }
     }
     
@@ -118,26 +123,32 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         return _currentPage
     }
     
-    var carouselViewModel: [KSImageCarouselDisplayable?] {
+    var carouselViewModel: [KSImageCarouselDisplayable] {
         
         if model.count == 1 {
-            // When model only have 1 element, should not have previous page or next page
-            return [nil,
-                    model[currentPage],
-                    nil]
-        } else {
+            // When model have only 1 element
+            return [model[0]]
             
+        } else if model.count == 2 {
+            // When model have only 2 elements
+            return [model[0], model[1]]
+            
+        } else {
+            // When model have only 3 or more elements
             if isFirstPage {
-                // When at first page, should not have model for previous page, thus set it to nil
-                return [nil,
-                        model[currentPage],
-                        model[currentPage + 1]]
+                
+                return [model[currentPage],
+                        model[currentPage + 1],
+                        model[currentPage + 2]]
+                
             } else if isLastPage {
-                // When at last page, should not have model for previous page, thus set it to nil
-                return [model[currentPage - 1],
-                        model[currentPage],
-                        nil]
+                
+                return [model[currentPage - 2],
+                        model[currentPage - 1],
+                        model[currentPage]]
+                
             } else {
+                
                 return [model[currentPage - 1],
                         model[currentPage],
                         model[currentPage + 1]]
@@ -169,8 +180,6 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        
-        //        let vm = viewModel(forPage: currentPage)
         _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
         _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
@@ -210,19 +219,38 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         
         _currentPage = p
     }
+    
+    
+    /// Base on current page, scroll carousel to subview that should be visible to user
+    fileprivate func scrollCarouselToDesireSubview() {
+        // TODO: Add unit test
+        if isFirstPage {
+            // Scroll to first image view
+            carousel?.scrollToFirstSubview()
+        } else if isLastPage {
+            // Scroll to last image view
+            carousel?.scrollToLastSubview()
+        } else {
+            // Scroll to center image view
+            carousel?.scrollToCenterSubview()
+        }
+    }
 }
 
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICFiniteCoordinator {
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
-        
+        // Scroll carousel to subview that user should see
+        scrollCarouselToDesireSubview()
     }
     
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+        // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         nextPage()
     }
     
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+        // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
     }
 }
@@ -241,18 +269,21 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     private var _currentPage: Int {
         didSet {
+            
+            // Note: Everytime current page being set, we will update carousel's viewModel (which will update images in carousel) and scroll carousel to subview that user should see
+            
             // Update view model of carousel
             _carousel?.viewModel = carouselViewModel
             
-            // Center page should always be the current visible page
-            _carousel?.scrollToCenterPage()
+            // Scroll carousel to subview that user should see
+            scrollCarouselToDesireSubview()
         }
     }
     var currentPage: Int {
         return _currentPage
     }
     
-    var carouselViewModel: [KSImageCarouselDisplayable?] {
+    var carouselViewModel: [KSImageCarouselDisplayable] {
         if model.count == 1 {
             // When model only have 1 element, next page & previous page is same as current page
             return [model[currentPage],
@@ -341,20 +372,30 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         
         _currentPage = p
     }
+    
+    /// Base on current page, scroll carousel to subview that should be visible to user
+    fileprivate func scrollCarouselToDesireSubview() {
+        // TODO: Add unit test
+        
+        // Center page should always be the current visible page
+        carousel?.scrollToCenterSubview()
+    }
 }
 
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICInfiniteCoordinator {
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
-        // Center page should always be the current visible page
-        carousel?.scrollToCenterPage()
+        // Scroll carousel to subview that user should see
+        scrollCarouselToDesireSubview()
     }
     
     func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
+        // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         nextPage()
     }
     
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
+        // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
         previousPage()
     }
 }
