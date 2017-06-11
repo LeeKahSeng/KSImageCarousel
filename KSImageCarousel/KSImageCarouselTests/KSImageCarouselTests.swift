@@ -118,7 +118,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 3 times
         var nextPageCount = 3
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -130,7 +130,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 5 times
         nextPageCount = 5
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -143,7 +143,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 2 times
         var prevPageCount = 2
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value
@@ -156,7 +156,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 10 times
         prevPageCount = 10
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value
@@ -182,7 +182,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 3 times
         let nextPageCount = 3
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -193,7 +193,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 2 times
         let prevPageCount = 2
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value
@@ -224,7 +224,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 3 times
         var nextPageCount = 3
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -237,7 +237,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 5 times
         nextPageCount = 5
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -250,7 +250,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 4 times
         var prevPageCount = 4
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value
@@ -263,7 +263,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 10 times
         prevPageCount = 10
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value
@@ -289,7 +289,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to next page 3 times
         let nextPageCount = 3
         for _ in 0..<nextPageCount {
-            coordinator.nextPage()
+            coordinator.increasePageByOne()
         }
         
         // Test view model value
@@ -300,7 +300,7 @@ class KSImageCarouselTests: XCTestCase {
         // Go to previous page 2 times
         let prevPageCount = 2
         for _ in 0..<prevPageCount {
-            coordinator.previousPage()
+            coordinator.reducePageByOne()
         }
         
         // Test view model value

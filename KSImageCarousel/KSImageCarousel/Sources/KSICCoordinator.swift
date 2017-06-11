@@ -61,10 +61,10 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     /// Add the carousel to it's container
     func showCarousel(inside container: UIView, of parentViewController: UIViewController)
     
-    /// Go to next page - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+    /// Scroll carousel to next page (just like user swipe to left)
     func nextPage()
-    
-    /// Go to previous page - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+
+    /// Scroll carousel to previous page (just like user swipe to right)
     func previousPage()
 }
 
@@ -204,30 +204,20 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
 
     public func nextPage() {
-        if currentPage == lastPage {
-            return
-        } else {
-            let newPage = currentPage + 1
-            try! goto(page: newPage)
-        }
+
     }
     
     public func previousPage() {
-        if currentPage == firstPage {
-            return
-        } else {
-            let newPage = currentPage - 1
-            try! goto(page: newPage)
-        }
+
     }
     
-    // MARK: Private functions
+    // MARK: Utilities functions
     
-    /// Go to a specific page
+    /// Set current page number
     ///
     /// - Parameter p: page number
     /// - Throws: pageOutOfRange
-    private func goto(page p: Int) throws {
+    private func setPage(_ p: Int) throws {
         
         // Make sure page is between first page and last page
         guard isPageInRange(p) else {
@@ -238,6 +228,25 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         _currentPage = p
     }
     
+    /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+    func increasePageByOne() {
+        if currentPage == lastPage {
+            return
+        } else {
+            let newPage = currentPage + 1
+            try! setPage(newPage)
+        }
+    }
+    
+    /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+    func reducePageByOne() {
+        if currentPage == firstPage {
+            return
+        } else {
+            let newPage = currentPage - 1
+            try! setPage(newPage)
+        }
+    }
     
     /// Base on current page, scroll carousel to subview that should be visible to user
     fileprivate func scrollCarouselToDesireSubview() {
@@ -263,13 +272,13 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
     }
     
     public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
-        // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-        nextPage()
+        // Calling increasePageByOne() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+        increasePageByOne()
     }
     
     public func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
-        // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-        previousPage()
+        // Calling reducePageByOne() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+        reducePageByOne()
     }
     
     public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
@@ -372,21 +381,11 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     }
     
     public func nextPage() {
-        if currentPage == lastPage {
-            try! goto(page: firstPage)
-        } else {
-            let newPage = currentPage + 1
-            try! goto(page: newPage)
-        }
+        print("next page")
     }
     
     public func previousPage() {
-        if currentPage == firstPage {
-            try! goto(page: lastPage)
-        } else {
-            let newPage = currentPage - 1
-            try! goto(page: newPage)
-        }
+        print("prev page")
     }
     
     
@@ -409,13 +408,33 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     }
     
     
-    // MARK: Private functions
+    // MARK: Utilities functions
     
-    /// Go to a specific page
+    /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+    func increasePageByOne() {
+        if currentPage == lastPage {
+            try! setPage(firstPage)
+        } else {
+            let newPage = currentPage + 1
+            try! setPage(newPage)
+        }
+    }
+    
+    /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+    func reducePageByOne() {
+        if currentPage == firstPage {
+            try! setPage(lastPage)
+        } else {
+            let newPage = currentPage - 1
+            try! setPage(newPage)
+        }
+    }
+    
+    /// Set current page number
     ///
     /// - Parameter p: page number
     /// - Throws: pageOutOfRange
-    private func goto(page p: Int) throws {
+    private func setPage(_ p: Int) throws {
         
         // Make sure page is between first page and last page
         guard isPageInRange(p) else {
@@ -443,13 +462,13 @@ extension KSICCoordinator where Self == KSICInfiniteCoordinator {
     }
     
     public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
-        // Calling nextPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-        nextPage()
+        // Calling increasePageByOne() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+        increasePageByOne()
     }
     
     public func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController) {
-        // Calling previousPage() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-        previousPage()
+        // Calling reducePageByOne() will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
+        reducePageByOne()
     }
     
     public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
