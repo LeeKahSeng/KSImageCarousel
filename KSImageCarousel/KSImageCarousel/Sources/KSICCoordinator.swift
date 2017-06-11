@@ -282,6 +282,11 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
 /// Carousel will be able to scroll infinitely when using this coordinator
 public class KSICInfiniteCoordinator: KSICCoordinator {
     
+    public enum KSICAutoScrollDirection {
+        case left
+        case right
+    }
+    
     public var delegate: KSICCoordinatorDelegate?
     
     public let model: [KSImageCarouselDisplayable]
@@ -333,6 +338,10 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         }
     }
     
+    
+    /// Timer object needed for auto scrolling
+    lazy private var autoScrollTimer: Timer = Timer()
+    
     /// Initializer
     ///
     /// - Parameters:
@@ -379,6 +388,26 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
             try! goto(page: newPage)
         }
     }
+    
+    
+    // MARK: Public functions
+    public func startAutoScroll(withDirection direction: KSICAutoScrollDirection, interval: TimeInterval) {
+        switch direction {
+        case .left:
+            autoScrollTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { [unowned self] (timer) in
+                self.nextPage()
+            })
+        case .right:
+            autoScrollTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { [unowned self] (timer) in
+                self.previousPage()
+            })
+        }
+    }
+    
+    public func stopAutoScroll() {
+        autoScrollTimer.invalidate()
+    }
+    
     
     // MARK: Private functions
     

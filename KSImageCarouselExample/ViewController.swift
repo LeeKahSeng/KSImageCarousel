@@ -28,7 +28,9 @@ class ViewController: UIViewController {
         if let coordinator = try? KSICInfiniteCoordinator(with: model, initialPage: 0) {
             coordinator.showCarousel(inside: containerView, of: self)
             coordinator.delegate = self
+            coordinator.startAutoScroll(withDirection: .right, interval: 2)
         }
+        
         
 //        if let coordinator = try? KSICFiniteCoordinator(with: model, initialPage: 0) {
 //            coordinator.showCarousel(inside: containerView, of: self)
