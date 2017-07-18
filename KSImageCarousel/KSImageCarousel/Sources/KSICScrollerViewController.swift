@@ -106,40 +106,40 @@ public class KSICScrollerViewController: UIViewController {
     }
     
     // MARK: - internal functions
-    func scrollToCenterSubview() {
+    func scrollToCenterSubview(_ animated: Bool) {
         if imageViewCount < 3 {
             fatalError("scrollToCenterSubview() should only be called when viewModel have at least 3 elements.")
         }
         
         let scrollViewWidth = scrollView.bounds.size.width
         let scrollViewHeight = scrollView.bounds.size.height
-        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * 1, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: animated)
         
         // Keep track of the latest scroll view content offset x value
         contentOffsetX = scrollView.contentOffset.x
     }
     
-    func scrollToFirstSubview() {
+    func scrollToFirstSubview(_ animated: Bool) {
         if imageViewCount < 1 {
             fatalError("scrollToFirstSubview() should only be called when viewModel have at least 1 element.")
         }
         
         let scrollViewWidth = scrollView.bounds.size.width
         let scrollViewHeight = scrollView.bounds.size.height
-        scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        scrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: animated)
         
         // Keep track of the latest scroll view content offset x value
         contentOffsetX = scrollView.contentOffset.x
     }
     
-    func scrollToLastSubview() {
+    func scrollToLastSubview(_ animated: Bool) {
         if imageViewCount < 1 {
             fatalError("scrollToLastSubview() should only be called when viewModel have at least 1 element.")
         }
         
         let scrollViewWidth = scrollView.bounds.size.width
         let scrollViewHeight = scrollView.bounds.size.height
-        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * CGFloat(imageViewCount - 1), y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: false)
+        scrollView.scrollRectToVisible(CGRect(x: scrollViewWidth * CGFloat(imageViewCount - 1), y: 0, width: scrollViewWidth, height: scrollViewHeight), animated: animated)
         
         // Keep track of the latest scroll view content offset x value
         contentOffsetX = scrollView.contentOffset.x

@@ -62,10 +62,10 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     func showCarousel(inside container: UIView, of parentViewController: UIViewController)
     
     /// Scroll carousel to next page (just like user swipe to left)
-    func nextPage()
+    func scrollToNextPage()
 
     /// Scroll carousel to previous page (just like user swipe to right)
-    func previousPage()
+    func scrollToPreviousPage()
 }
 
 extension KSICCoordinator {
@@ -132,8 +132,8 @@ public class KSICFiniteCoordinator: KSICCoordinator {
             // Update view model of carousel
             _carousel?.viewModel = carouselViewModel
             
-            // Scroll carousel to subview that user should see
-            scrollCarouselToDesireSubview()
+            // Scroll carousel (without animation) to subview that user should see
+            swapCarouselSubview()
         }
     }
     
@@ -203,12 +203,26 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         add(_carousel!, to: container, of: parentViewController)
     }
 
-    public func nextPage() {
-
+    public func scrollToNextPage() {
+        
+        // Simulate action when user scroll carousel with finger. This will trigger scrollerViewControllerDidGotoNextPage and everything will run just the same like a real user interaction
+        
+        if isFirstPage {
+            carousel?.scrollToCenterSubview(true)
+        } else {
+            carousel?.scrollToLastSubview(true)
+        }
     }
     
-    public func previousPage() {
-
+    public func scrollToPreviousPage() {
+        
+        // Simulate action when user scroll carousel with finger. This will trigger scrollerViewControllerDidGotoPreviousPage and everything will run just the same like a real user interaction
+        
+        if isLastPage {
+            carousel?.scrollToCenterSubview(true)
+        } else {
+            carousel?.scrollToFirstSubview(true)
+        }
     }
     
     // MARK: Utilities functions
@@ -248,18 +262,18 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         }
     }
     
-    /// Base on current page, scroll carousel to subview that should be visible to user
-    fileprivate func scrollCarouselToDesireSubview() {
+    /// Base on current page, scroll carousel (without animation) to subview that should be visible to user
+    fileprivate func swapCarouselSubview() {
         // TODO: Add unit test
         if isFirstPage {
             // Scroll to first image view
-            carousel?.scrollToFirstSubview()
+            carousel?.scrollToFirstSubview(false)
         } else if isLastPage {
             // Scroll to last image view
-            carousel?.scrollToLastSubview()
+            carousel?.scrollToLastSubview(false)
         } else {
             // Scroll to center image view
-            carousel?.scrollToCenterSubview()
+            carousel?.scrollToCenterSubview(false)
         }
     }
 }
@@ -267,8 +281,8 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICFiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
-        // Scroll carousel to subview that user should see
-        scrollCarouselToDesireSubview()
+        // Scroll carousel (without animation) to subview that user should see
+        swapCarouselSubview()
     }
     
     public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
@@ -313,8 +327,8 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
             // Update view model of carousel
             _carousel?.viewModel = carouselViewModel
             
-            // Scroll carousel to subview that user should see
-            scrollCarouselToDesireSubview()
+            // Scroll carousel (without animation) to subview that user should see
+            swapCarouselSubview()
         }
     }
     public var currentPage: Int {
@@ -380,25 +394,26 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         add(_carousel!, to: container, of: parentViewController)
     }
     
-    public func nextPage() {
-        print("next page")
+    public func scrollToNextPage() {
+        // Simulate action when user scroll carousel with finger. This will trigger scrollerViewControllerDidGotoNextPage and everything will run just the same like a real user interaction
+        carousel?.scrollToLastSubview(true)
     }
     
-    public func previousPage() {
-        print("prev page")
+    public func scrollToPreviousPage() {
+        // Simulate action when user scroll carousel with finger. This will trigger scrollerViewControllerDidGotoPreviousPage and everything will run just the same like a real user interaction
+        carousel?.scrollToLastSubview(false)
     }
-    
     
     // MARK: Public functions
     public func startAutoScroll(withDirection direction: KSICAutoScrollDirection, interval: TimeInterval) {
         switch direction {
         case .left:
             autoScrollTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { [unowned self] (timer) in
-                self.nextPage()
+                self.scrollToNextPage()
             })
         case .right:
             autoScrollTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { [unowned self] (timer) in
-                self.previousPage()
+                self.scrollToPreviousPage()
             })
         }
     }
@@ -445,20 +460,20 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         _currentPage = p
     }
     
-    /// Base on current page, scroll carousel to subview that should be visible to user
-    fileprivate func scrollCarouselToDesireSubview() {
+    /// Base on current page, scroll carousel (without animation) to subview that should be visible to user
+    fileprivate func swapCarouselSubview() {
         // TODO: Add unit test
         
         // Center page should always be the current visible page
-        carousel?.scrollToCenterSubview()
+        carousel?.scrollToCenterSubview(false)
     }
 }
 
 // MARK: KSICScrollerViewControllerDelegate
 extension KSICCoordinator where Self == KSICInfiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
-        // Scroll carousel to subview that user should see
-        scrollCarouselToDesireSubview()
+        // Scroll carousel (without animation) to subview that user should see
+        swapCarouselSubview()
     }
     
     public func scrollerViewControllerDidGotoNextPage(_ viewController: KSICScrollerViewController) {
