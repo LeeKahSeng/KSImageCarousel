@@ -401,7 +401,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     public func scrollToPreviousPage() {
         // Simulate action when user scroll carousel with finger. This will trigger scrollerViewControllerDidGotoPreviousPage and everything will run just the same like a real user interaction
-        carousel?.scrollToLastSubview(false)
+        carousel?.scrollToFirstSubview(true)
     }
     
     // MARK: Public functions
