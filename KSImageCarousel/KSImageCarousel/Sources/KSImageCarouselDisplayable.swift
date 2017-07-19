@@ -26,13 +26,25 @@
 
 import Foundation
 import UIKit
+import PINRemoteImage
 
 public protocol KSImageCarouselDisplayable {
-    func createCarouselImage(completion: (UIImage) -> ())
+    func createCarouselImage(completion: @escaping (UIImage) -> ())
 }
 
 extension UIImage: KSImageCarouselDisplayable {
-    public func createCarouselImage(completion: (UIImage) -> ()) {
+    public func createCarouselImage(completion: @escaping (UIImage) -> ()) {
         completion(self)
+    }
+}
+
+extension URL: KSImageCarouselDisplayable {
+
+    public func createCarouselImage(completion: @escaping (UIImage) -> ()) {
+        
+        PINRemoteImageManager.shared().downloadImage(with: self, options: []) { (result) in
+            let image = result.image ?? UIImage()
+            completion(image)
+        }
     }
 }
