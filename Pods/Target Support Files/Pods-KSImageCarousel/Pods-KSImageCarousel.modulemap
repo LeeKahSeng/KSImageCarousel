@@ -1,0 +1,6 @@
+framework module Pods_KSImageCarousel {
+  umbrella header "Pods-KSImageCarousel-umbrella.h"
+
+  export *
+  module * { export * }
+}
