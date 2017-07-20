@@ -38,12 +38,9 @@ extension UIImage: KSImageCarouselDisplayable {
 }
 
 extension URL: KSImageCarouselDisplayable {
-
     public func createCarouselImage(completion: @escaping (UIImage) -> ()) {
-        
-//        PINRemoteImageManager.shared().downloadImage(with: self, options: []) { (result) in
-//            let image = result.image ?? UIImage()
-//            completion(image)
-//        }
+        KSICImageCache.shared.fetchImage(from: self) { (image) in
+            completion(image!)
+        }
     }
 }
