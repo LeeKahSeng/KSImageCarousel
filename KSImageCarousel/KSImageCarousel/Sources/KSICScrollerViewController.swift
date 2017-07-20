@@ -178,8 +178,11 @@ public class KSICScrollerViewController: UIViewController {
         
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
+            imageView.image = placeholderImage
             viewModel[index].createCarouselImage(completion: { (image) in
-                imageView.image = image
+                if image != nil {
+                    imageView.image = image
+                }
             })
         }
     }

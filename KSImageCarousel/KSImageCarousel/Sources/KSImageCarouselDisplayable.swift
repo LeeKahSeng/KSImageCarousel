@@ -28,19 +28,19 @@ import Foundation
 import UIKit
 
 public protocol KSImageCarouselDisplayable {
-    func createCarouselImage(completion: @escaping (UIImage) -> ())
+    func createCarouselImage(completion: @escaping (UIImage?) -> ())
 }
 
 extension UIImage: KSImageCarouselDisplayable {
-    public func createCarouselImage(completion: @escaping (UIImage) -> ()) {
+    public func createCarouselImage(completion: @escaping (UIImage?) -> ()) {
         completion(self)
     }
 }
 
 extension URL: KSImageCarouselDisplayable {
-    public func createCarouselImage(completion: @escaping (UIImage) -> ()) {
+    public func createCarouselImage(completion: @escaping (UIImage?) -> ()) {
         KSICImageCache.shared.fetchImage(from: self) { (image) in
-            completion(image!)
+            completion(image)
         }
     }
 }
