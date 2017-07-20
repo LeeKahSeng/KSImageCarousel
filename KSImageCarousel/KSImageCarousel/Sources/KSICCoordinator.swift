@@ -47,6 +47,9 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     /// The model (images that need to be show on carousel)
     var model: [KSImageCarouselDisplayable] { get }
     
+    /// The placeholder image to show while image being download
+    var placeholderImage: UIImage { get }
+    
     /// KSICCoordinator optional delegte
     var delegate: KSICCoordinatorDelegate? { get set }
     
@@ -119,6 +122,8 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 
     public let model: [KSImageCarouselDisplayable]
     
+    public private(set) var placeholderImage: UIImage
+    
     private var _carousel: KSICScrollerViewController?
     public var carousel: KSICScrollerViewController? {
         return _carousel
@@ -173,14 +178,15 @@ public class KSICFiniteCoordinator: KSICCoordinator {
             }
         }
     }
-    
+
     /// Initializer
     ///
     /// - Parameters:
     ///   - model: Model for carousel
+    ///   - placeholderImage: Placeholder image to show when image being download
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    public init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage, initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -188,6 +194,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         }
         
         self.model = model
+        self.placeholderImage = placeholderImage
         self._currentPage = initialPage
         
         // Make sure initial page is in range
@@ -198,7 +205,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage)
         _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }
@@ -314,6 +321,8 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     public let model: [KSImageCarouselDisplayable]
     
+    public private(set) var placeholderImage: UIImage
+    
     private var _carousel: KSICScrollerViewController?
     public var carousel: KSICScrollerViewController? {
         return _carousel
@@ -369,9 +378,10 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     ///
     /// - Parameters:
     ///   - model: Model for carousel
+    ///   - placeholderImage: Placeholder image to show when image being download
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    public init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage, initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -379,6 +389,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         }
         
         self.model = model
+        self.placeholderImage = placeholderImage
         self._currentPage = initialPage
         
         // Make sure initial page is in range
@@ -389,7 +400,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel)
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage)
         _carousel!.delegate = self
         add(_carousel!, to: container, of: parentViewController)
     }
