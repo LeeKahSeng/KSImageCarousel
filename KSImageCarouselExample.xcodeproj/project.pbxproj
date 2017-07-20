@@ -14,7 +14,6 @@
 		F9D158581ED5B94100F4EAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D158561ED5B94100F4EAD7 /* Main.storyboard */; };
 		F9D1585A1ED5B94100F4EAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D158591ED5B94100F4EAD7 /* Assets.xcassets */; };
 		F9D1585D1ED5B94100F4EAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D1585B1ED5B94100F4EAD7 /* LaunchScreen.storyboard */; };
-		FC22C811B95C1516821B384E /* Pods_KSImageCarouselExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC3F85D1E24DDF74D87AA3D /* Pods_KSImageCarouselExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,9 +31,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0AE21638316D1B9FC019EB99 /* Pods-KSImageCarouselExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSImageCarouselExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-KSImageCarouselExample/Pods-KSImageCarouselExample.release.xcconfig"; sourceTree = "<group>"; };
-		4045BF57B852694BB813CB1F /* Pods-KSImageCarouselExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KSImageCarouselExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KSImageCarouselExample/Pods-KSImageCarouselExample.debug.xcconfig"; sourceTree = "<group>"; };
-		9CC3F85D1E24DDF74D87AA3D /* Pods_KSImageCarouselExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KSImageCarouselExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91944711F1F56BA00C4140F /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1584F1ED5B94100F4EAD7 /* KSImageCarouselExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSImageCarouselExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,7 +47,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F91944721F1F56BA00C4140F /* KSImageCarousel.framework in Frameworks */,
-				FC22C811B95C1516821B384E /* Pods_KSImageCarouselExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,18 +56,8 @@
 		3AEDB88392DE9A467EA9C030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9CC3F85D1E24DDF74D87AA3D /* Pods_KSImageCarouselExample.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9C2A3B7081C5ACDF0D600AB3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4045BF57B852694BB813CB1F /* Pods-KSImageCarouselExample.debug.xcconfig */,
-				0AE21638316D1B9FC019EB99 /* Pods-KSImageCarouselExample.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		F9D158461ED5B94100F4EAD7 = {
@@ -81,7 +66,6 @@
 				F91944711F1F56BA00C4140F /* KSImageCarousel.framework */,
 				F9D158511ED5B94100F4EAD7 /* KSImageCarouselExample */,
 				F9D158501ED5B94100F4EAD7 /* Products */,
-				9C2A3B7081C5ACDF0D600AB3 /* Pods */,
 				3AEDB88392DE9A467EA9C030 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -114,12 +98,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9D158611ED5B94100F4EAD7 /* Build configuration list for PBXNativeTarget "KSImageCarouselExample" */;
 			buildPhases = (
-				A1615D0BAB908795500E48C3 /* [CP] Check Pods Manifest.lock */,
 				F9D1584B1ED5B94100F4EAD7 /* Sources */,
 				F9D1584C1ED5B94100F4EAD7 /* Frameworks */,
 				F9D1584D1ED5B94100F4EAD7 /* Resources */,
-				697EDA886CD7ABFD6D6EAF06 /* [CP] Embed Pods Frameworks */,
-				125CBAA2AD74F8337C596D8B /* [CP] Copy Pods Resources */,
 				F91944741F1F56BA00C4140F /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -178,54 +159,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		125CBAA2AD74F8337C596D8B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSImageCarouselExample/Pods-KSImageCarouselExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		697EDA886CD7ABFD6D6EAF06 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KSImageCarouselExample/Pods-KSImageCarouselExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A1615D0BAB908795500E48C3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9D1584B1ED5B94100F4EAD7 /* Sources */ = {
@@ -354,7 +287,6 @@
 		};
 		F9D158621ED5B94100F4EAD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4045BF57B852694BB813CB1F /* Pods-KSImageCarouselExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SM42V25455;
@@ -368,7 +300,6 @@
 		};
 		F9D158631ED5B94100F4EAD7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AE21638316D1B9FC019EB99 /* Pods-KSImageCarouselExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SM42V25455;
