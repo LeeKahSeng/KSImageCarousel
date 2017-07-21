@@ -28,19 +28,45 @@ import Foundation
 import UIKit
 
 public protocol KSImageCarouselDisplayable {
-    func createCarouselImage(completion: @escaping (UIImage?) -> ())
+    
+    
+    /// Create / generate / download image that needs to be show on carousell
+    ///
+    /// - Parameter completion: Completion handler when image is ready. This closure should accept the image and the KSImageCarouselDisplayable that provide the image
+    func createCarouselImage(completion: @escaping (UIImage?, KSImageCarouselDisplayable) -> Void)
+    
+    
+    /// Act as equatable checker to compare 2 KSImageCarouselDisplayable. This is needed to make sure the image will show in the correct image view of the carousel when createCarouselImage completion handler trigger . However if the KSImageCarouselDisplayable able to create the image instantly, then just return true in this function
+    ///
+    /// - Parameter displayable: KSImageCarouselDisplayable to compare
+    /// - Returns: true -> both is the same; false -> both is not the same
+    func isEqual(to displayable: KSImageCarouselDisplayable) -> Bool
 }
 
 extension UIImage: KSImageCarouselDisplayable {
-    public func createCarouselImage(completion: @escaping (UIImage?) -> ()) {
-        completion(self)
+
+    public func createCarouselImage(completion: @escaping (UIImage?, KSImageCarouselDisplayable) -> Void) {
+        completion(self, self)
+    }
+    
+    public func isEqual(to displayable: KSImageCarouselDisplayable) -> Bool {
+        return true
     }
 }
 
 extension URL: KSImageCarouselDisplayable {
-    public func createCarouselImage(completion: @escaping (UIImage?) -> ()) {
+
+    public func createCarouselImage(completion: @escaping (UIImage?, KSImageCarouselDisplayable) -> ()) {
         KSICImageCache.shared.fetchImage(from: self) { (image) in
-            completion(image)
+            completion(image, self)
+        }
+    }
+
+    public func isEqual(to displayable: KSImageCarouselDisplayable) -> Bool {
+        if let url = displayable as? URL {
+            return url == self
+        } else {
+            return false
         }
     }
 }

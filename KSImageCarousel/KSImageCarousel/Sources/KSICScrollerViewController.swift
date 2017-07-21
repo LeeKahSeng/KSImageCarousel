@@ -175,13 +175,17 @@ public class KSICScrollerViewController: UIViewController {
     }
     
     fileprivate func setViewModelToScrollView() {
-        
+       
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
             imageView.image = placeholderImage
-            viewModel[index].createCarouselImage(completion: { (image) in
-                if image != nil {
-                    imageView.image = image
+            viewModel[index].createCarouselImage(completion: { [weak self] (image, displayable) in
+                if self != nil {
+                   
+                    // Only display the image when the KSImageCarouselDisplayable that trigger the completion handler same as the one currently in viewModel
+                    if displayable.isEqual(to: self!.viewModel[index]) {
+                        imageView.image = image
+                    }
                 }
             })
         }
