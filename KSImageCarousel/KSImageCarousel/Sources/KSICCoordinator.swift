@@ -48,7 +48,7 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     var model: [KSImageCarouselDisplayable] { get }
     
     /// The placeholder image to show while image being download
-    var placeholderImage: UIImage { get }
+    var placeholderImage: UIImage? { get }
     
     /// A Boolean value that determines whether the activity indicator is visible when loading image to carousel. Default value is true. This value should be set before calling showCarousel(inside: of:)
     var shouldShowActivityIndicator: Bool { get set }
@@ -128,7 +128,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 
     public let model: [KSImageCarouselDisplayable]
     
-    public private(set) var placeholderImage: UIImage
+    public private(set) var placeholderImage: UIImage?
     
     public var shouldShowActivityIndicator = true
     
@@ -195,7 +195,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     ///   - placeholderImage: Placeholder image to show when image being download
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage, initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage?, initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -210,6 +210,16 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         guard isPageInRange(initialPage) else {
             throw CoordinatorError.pageOutOfRange
         }
+    }
+    
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - model: Model for carousel
+    ///   - initialPage: Page to display when carousel first shown
+    /// - Throws: emptyModel, pageOutOfRange
+    public convenience init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+        try self.init(with: model, placeholderImage: nil, initialPage: initialPage)
     }
     
     // MARK: KSICCoordinator conformation
@@ -337,7 +347,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     public let model: [KSImageCarouselDisplayable]
     
-    public private(set) var placeholderImage: UIImage
+    public private(set) var placeholderImage: UIImage?
     
     public var shouldShowActivityIndicator = true
     
@@ -401,7 +411,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     ///   - placeholderImage: Placeholder image to show when image being download
     ///   - initialPage: Page to display when carousel first shown
     /// - Throws: emptyModel, pageOutOfRange
-    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage, initialPage: Int) throws {
+    public init(with model: [KSImageCarouselDisplayable], placeholderImage: UIImage?, initialPage: Int) throws {
         
         // Make sure model is not empty
         guard model.count > 0 else {
@@ -416,6 +426,16 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         guard isPageInRange(initialPage) else {
             throw CoordinatorError.pageOutOfRange
         }
+    }
+    
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - model: Model for carousel
+    ///   - initialPage: Page to display when carousel first shown
+    /// - Throws: emptyModel, pageOutOfRange
+    public convenience init(with model: [KSImageCarouselDisplayable], initialPage: Int) throws {
+        try self.init(with: model, placeholderImage: nil, initialPage: initialPage)
     }
     
     // MARK: KSICCoordinator conformation

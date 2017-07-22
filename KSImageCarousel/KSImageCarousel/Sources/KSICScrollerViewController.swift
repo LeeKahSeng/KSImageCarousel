@@ -44,7 +44,7 @@ public class KSICScrollerViewController: UIViewController {
     lazy fileprivate var scrollView: UIScrollView = UIScrollView()
     fileprivate var imageViews: [KSICImageView] = []
     fileprivate var tapGestureRecognizers: [UITapGestureRecognizer?] = []
-    private let placeholderImage: UIImage
+    private let placeholderImage: UIImage?
     
     /// This will be use to determine wether scroll view had scrolled to next page or previous page after scroll ended
     fileprivate var contentOffsetX: CGFloat = 0
@@ -60,7 +60,7 @@ public class KSICScrollerViewController: UIViewController {
         }
     }
     
-    init(withViewModel vm: [KSImageCarouselDisplayable], placeholderImage: UIImage, delegate: KSICScrollerViewControllerDelegate) {
+    init(withViewModel vm: [KSImageCarouselDisplayable], placeholderImage: UIImage?, delegate: KSICScrollerViewControllerDelegate) {
         
         viewModel = vm
         self.placeholderImage = placeholderImage
