@@ -12,6 +12,7 @@
 		F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */; };
 		F99C31A01EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
 		F99C31A11EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
+		F99DC4D71F2311DD00F2093B /* KSICImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DC4D61F2311DD00F2093B /* KSICImageView.swift */; };
 		F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */; };
 		F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DF1EDAD96600AE2E0A /* KSICError.swift */; };
 		F9D158361ED5B8D200F4EAD7 /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */; };
@@ -35,6 +36,7 @@
 		F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSImageCarouselDisplayable.swift; sourceTree = "<group>"; };
 		F99C319F1EDD7EC400019996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F99DC4D61F2311DD00F2093B /* KSICImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageView.swift; sourceTree = "<group>"; };
 		F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICCoordinator.swift; sourceTree = "<group>"; };
 		F9A678DF1EDAD96600AE2E0A /* KSICError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICError.swift; sourceTree = "<group>"; };
 		F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +122,7 @@
 				F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */,
 				F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */,
 				F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */,
+				F99DC4D61F2311DD00F2093B /* KSICImageView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				F96BF5B11EE026ED00E0E9E6 /* Extensions.swift in Sources */,
 				F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */,
 				F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */,
+				F99DC4D71F2311DD00F2093B /* KSICImageView.swift in Sources */,
 				F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */,
 				F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */,
 			);

@@ -39,7 +39,7 @@ public class KSICScrollerViewController: UIViewController {
     var delegate: KSICScrollerViewControllerDelegate?
     
     lazy fileprivate var scrollView: UIScrollView = UIScrollView()
-    fileprivate var imageViews: [UIImageView] = []
+    fileprivate var imageViews: [KSICImageView] = []
     fileprivate var tapGestureRecognizers: [UITapGestureRecognizer?] = []
     private let placeholderImage: UIImage
     
@@ -66,8 +66,7 @@ public class KSICScrollerViewController: UIViewController {
         // The number of subviews needed will be same as number of view models provided
         for _ in vm.enumerated() {
             // Set placeholder image to image view and keep in array
-            let imgView = UIImageView()
-            imgView.image = placeholderImage
+            let imgView = KSICImageView(image: placeholderImage)
             imageViews.append(imgView)
         }
         
@@ -179,11 +178,13 @@ public class KSICScrollerViewController: UIViewController {
         // Set image from view model to image view
         for (index, imageView) in imageViews.enumerated() {
             imageView.image = placeholderImage
+            imageView.startLoading()
             viewModel[index].createCarouselImage(completion: { [weak self] (image, displayable) in
                 if self != nil, let img = image {
                    
                     // Only display the image when the KSImageCarouselDisplayable that trigger the completion handler same as the one currently in viewModel
                     if displayable.isEqual(to: self!.viewModel[index]) {
+                        imageView.stopLoading()
                         imageView.image = img
                     }
                 }
