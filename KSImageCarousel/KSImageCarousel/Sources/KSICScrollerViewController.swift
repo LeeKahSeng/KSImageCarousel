@@ -180,11 +180,11 @@ public class KSICScrollerViewController: UIViewController {
         for (index, imageView) in imageViews.enumerated() {
             imageView.image = placeholderImage
             viewModel[index].createCarouselImage(completion: { [weak self] (image, displayable) in
-                if self != nil {
+                if self != nil, let img = image {
                    
                     // Only display the image when the KSImageCarouselDisplayable that trigger the completion handler same as the one currently in viewModel
                     if displayable.isEqual(to: self!.viewModel[index]) {
-                        imageView.image = image
+                        imageView.image = img
                     }
                 }
             })
