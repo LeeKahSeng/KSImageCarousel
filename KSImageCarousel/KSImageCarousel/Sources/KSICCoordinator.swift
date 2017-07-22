@@ -50,6 +50,12 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     /// The placeholder image to show while image being download
     var placeholderImage: UIImage { get }
     
+    /// A Boolean value that determines whether the activity indicator is visible when loading image to carousel. Default value is true. This value should be set before calling showCarousel(inside: of:)
+    var shouldShowActivityIndicator: Bool { get set }
+    
+    /// Style of the activity indicator that shown when loading image to carousel. Default value is gray. This value needs should be set before calling showCarousel(inside: of:)
+    var activityIndicatorStyle: UIActivityIndicatorViewStyle { get set }
+    
     /// KSICCoordinator optional delegte
     var delegate: KSICCoordinatorDelegate? { get set }
     
@@ -124,6 +130,10 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     public private(set) var placeholderImage: UIImage
     
+    public var shouldShowActivityIndicator = true
+    
+    public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
+    
     private var _carousel: KSICScrollerViewController?
     public var carousel: KSICScrollerViewController? {
         return _carousel
@@ -131,7 +141,6 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     private var _currentPage: Int {
         didSet {
-            
             // Note: Everytime current page being set, we will update carousel's viewModel (which will update images in carousel) and scroll carousel to subview that user should see
             
             // Update view model of carousel
@@ -205,8 +214,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage)
-        _carousel!.delegate = self
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
         add(_carousel!, to: container, of: parentViewController)
     }
 
@@ -305,6 +313,14 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
     public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
         delegate?.carouselDidTappedImage(at: currentPage, coordinator: self)
     }
+    
+    public func scrollerViewControllerShouldShowActivityIndicator() -> Bool {
+        return shouldShowActivityIndicator
+    }
+    
+    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorViewStyle {
+        return activityIndicatorStyle
+    }
 }
 
 // MARK: -
@@ -322,6 +338,10 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     public let model: [KSImageCarouselDisplayable]
     
     public private(set) var placeholderImage: UIImage
+    
+    public var shouldShowActivityIndicator = true
+    
+    public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
     
     private var _carousel: KSICScrollerViewController?
     public var carousel: KSICScrollerViewController? {
@@ -400,8 +420,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage)
-        _carousel!.delegate = self
+        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
         add(_carousel!, to: container, of: parentViewController)
     }
     
@@ -499,6 +518,14 @@ extension KSICCoordinator where Self == KSICInfiniteCoordinator {
     
     public func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController) {
         delegate?.carouselDidTappedImage(at: currentPage, coordinator: self)
+    }
+    
+    public func scrollerViewControllerShouldShowActivityIndicator() -> Bool {
+        return shouldShowActivityIndicator
+    }
+    
+    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorViewStyle {
+        return activityIndicatorStyle
     }
 }
 

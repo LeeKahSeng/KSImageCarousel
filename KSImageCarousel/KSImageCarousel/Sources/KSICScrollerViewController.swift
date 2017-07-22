@@ -32,11 +32,14 @@ public protocol KSICScrollerViewControllerDelegate {
     func scrollerViewControllerDidGotoPreviousPage(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController)
+    
+    func scrollerViewControllerShouldShowActivityIndicator() -> Bool
+    func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorViewStyle
 }
 
 public class KSICScrollerViewController: UIViewController {
     
-    var delegate: KSICScrollerViewControllerDelegate?
+    var delegate: KSICScrollerViewControllerDelegate
     
     lazy fileprivate var scrollView: UIScrollView = UIScrollView()
     fileprivate var imageViews: [KSICImageView] = []
@@ -57,16 +60,19 @@ public class KSICScrollerViewController: UIViewController {
         }
     }
     
-    init(withViewModel vm: [KSImageCarouselDisplayable], placeholderImage: UIImage) {
+    init(withViewModel vm: [KSImageCarouselDisplayable], placeholderImage: UIImage, delegate: KSICScrollerViewControllerDelegate) {
         
         viewModel = vm
         self.placeholderImage = placeholderImage
+        self.delegate = delegate
         
         // Image views that later will be added to scroll view as subviews
         // The number of subviews needed will be same as number of view models provided
         for _ in vm.enumerated() {
             // Set placeholder image to image view and keep in array
             let imgView = KSICImageView(image: placeholderImage)
+            imgView.activityIndicator.alpha = delegate.scrollerViewControllerShouldShowActivityIndicator() ? 1.0 : 0.0
+            imgView.activityIndicator.activityIndicatorViewStyle = delegate.scrollerViewControllerShowActivityIndicatorStyle()
             imageViews.append(imgView)
         }
         
@@ -101,7 +107,7 @@ public class KSICScrollerViewController: UIViewController {
         }
         
         // After finish laying out image view, trigger delegate to coordinator to perform specific action
-        delegate?.scrollerViewControllerDidFinishLayoutSubviews(self)
+        delegate.scrollerViewControllerDidFinishLayoutSubviews(self)
     }
 
     override public func didReceiveMemoryWarning() {
@@ -197,11 +203,11 @@ public class KSICScrollerViewController: UIViewController {
         if newX > oldX {
             // Next page
             // Trigger delegate and let coordinator decide what to do
-            delegate?.scrollerViewControllerDidGotoNextPage(self)
+            delegate.scrollerViewControllerDidGotoNextPage(self)
         } else if newX < oldX {
             // Previous page
             // Trigger delegate and let coordinator decide what to do
-            delegate?.scrollerViewControllerDidGotoPreviousPage(self)
+            delegate.scrollerViewControllerDidGotoPreviousPage(self)
         }
         
         contentOffsetX = newX
@@ -214,7 +220,7 @@ public class KSICScrollerViewController: UIViewController {
         }
         
         if let i = index {
-            delegate?.scrollerViewControllerDidTappedImageView(at: i, viewController: self)
+            delegate.scrollerViewControllerDidTappedImageView(at: i, viewController: self)
         }
     }
 }
