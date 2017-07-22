@@ -157,7 +157,7 @@ public class KSICScrollerViewController: UIViewController {
 
     // MARK: - fileprivate functions
     fileprivate func configureScrollView() {
-        scrollView.backgroundColor = .gray
+
         view.addSameSizeSubview(scrollView)
         
         // Configure scrollView
