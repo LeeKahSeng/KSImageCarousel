@@ -256,7 +256,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    fileprivate func increasePageByOne() {
+    func increasePageByOne() {
         if currentPage == lastPage {
             return
         } else {
@@ -266,7 +266,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    fileprivate func reducePageByOne() {
+    func reducePageByOne() {
         if currentPage == firstPage {
             return
         } else {
@@ -453,7 +453,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     // MARK: Utilities functions
     
     /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    fileprivate func increasePageByOne() {
+    func increasePageByOne() {
         if currentPage == lastPage {
             try! setPage(firstPage)
         } else {
@@ -463,7 +463,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     }
     
     /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    fileprivate func reducePageByOne() {
+    func reducePageByOne() {
         if currentPage == firstPage {
             try! setPage(lastPage)
         } else {
