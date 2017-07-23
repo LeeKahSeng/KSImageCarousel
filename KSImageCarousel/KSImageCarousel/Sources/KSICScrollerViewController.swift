@@ -167,7 +167,7 @@ public class KSICScrollerViewController: UIViewController {
         self.scrollView.scrollsToTop = false
         self.scrollView.delegate = self
         
-        // Add tap gesture recognizer to image view
+        // Add tap gesture recognizer to all UIImageViews
         for imageView in imageViews {
             
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewDidTapped(regconizer:)))

@@ -27,6 +27,8 @@
 
 import UIKit
 
+
+/// UIImageView subclass that have UIActivityIndicatorView as subview. This allow activity indicator to be shown at the center of the imageView while waiting for image to be downloaded
 class KSICImageView: UIImageView {
 
     lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()

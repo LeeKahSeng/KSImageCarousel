@@ -27,18 +27,19 @@
 
 import Foundation
 
+
+/// Simple singleton class to download and cache images downloaded from URL
 class KSICImageCache {
     
-    // Singleton
+    /// Singleton object of KSICImageCache
     static let shared = KSICImageCache()
     
     private let cache = NSCache<AnyObject, UIImage>()
     private init() {
-        cache.countLimit = 10 // Max cache 10 image
-        cache.totalCostLimit = 10 * 1024 * 1024 // 10M
+        cache.countLimit = 20 // Max cache 20 image
+        cache.totalCostLimit = 20 * 1024 * 1024 // 20M
     }
     
-
     /// Fetch image from url. If already in cache, will use image in cache instead
     ///
     /// - Parameters:

@@ -27,6 +27,7 @@
 import Foundation
 import UIKit
 
+/// Conform to this protocol to make your custom object able to show the images on KSImageCarousel
 public protocol KSImageCarouselDisplayable {
     
     
