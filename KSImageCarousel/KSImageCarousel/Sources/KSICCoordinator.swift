@@ -30,7 +30,7 @@ public protocol KSICCoordinatorDelegate {
     
     /// Method triggered when image of carousel being tapped
     ///
-    /// - Parameter index: model index of the tapped image
+    /// - Parameter index: model's index of the tapped image
     func carouselDidTappedImage(at index: Int, coordinator: KSICCoordinator)
 }
 
@@ -256,7 +256,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    func increasePageByOne() {
+    fileprivate func increasePageByOne() {
         if currentPage == lastPage {
             return
         } else {
@@ -266,7 +266,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     }
     
     /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    func reducePageByOne() {
+    fileprivate func reducePageByOne() {
         if currentPage == firstPage {
             return
         } else {
@@ -453,7 +453,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     // MARK: Utilities functions
     
     /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    func increasePageByOne() {
+    fileprivate func increasePageByOne() {
         if currentPage == lastPage {
             try! setPage(firstPage)
         } else {
@@ -463,7 +463,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     }
     
     /// -1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
-    func reducePageByOne() {
+    fileprivate func reducePageByOne() {
         if currentPage == firstPage {
             try! setPage(lastPage)
         } else {
