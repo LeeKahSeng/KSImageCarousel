@@ -51,13 +51,13 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     var placeholderImage: UIImage? { get }
     
     /// A Boolean value that determines whether the activity indicator is visible when loading image to carousel. Default value is true. This value should be set before calling showCarousel(inside: of:)
-    var shouldShowActivityIndicator: Bool { get set }
+    var shouldShowActivityIndicator: Bool { get }
     
     /// Style of the activity indicator that shown when loading image to carousel. Default value is gray. This value needs should be set before calling showCarousel(inside: of:)
-    var activityIndicatorStyle: UIActivityIndicatorViewStyle { get set }
+    var activityIndicatorStyle: UIActivityIndicatorViewStyle { get }
     
     /// KSICCoordinator optional delegte
-    var delegate: KSICCoordinatorDelegate? { get set }
+    var delegate: KSICCoordinatorDelegate? { get }
     
     /// View model for the carousel.
     /// The 3 elements consists of [prev page element, current page element, next page element]
@@ -125,34 +125,22 @@ extension KSICCoordinator {
 public class KSICFiniteCoordinator: KSICCoordinator {
     
     public var delegate: KSICCoordinatorDelegate?
-
     public let model: [KSImageCarouselDisplayable]
-    
-    public private(set) var placeholderImage: UIImage?
-    
+    public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
-    
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
-    
-    private var _carousel: KSICScrollerViewController?
-    public var carousel: KSICScrollerViewController? {
-        return _carousel
-    }
-    
-    private var _currentPage: Int {
+    public private(set) var carousel: KSICScrollerViewController?
+
+    public private(set) var currentPage: Int {
         didSet {
             // Note: Everytime current page being set, we will update carousel's viewModel (which will update images in carousel) and scroll carousel to subview that user should see
             
             // Update view model of carousel
-            _carousel?.viewModel = carouselViewModel
+            carousel?.viewModel = carouselViewModel
             
             // Scroll carousel (without animation) to subview that user should see
             swapCarouselSubview()
         }
-    }
-    
-    public var currentPage: Int {
-        return _currentPage
     }
     
     public var carouselViewModel: [KSImageCarouselDisplayable] {
@@ -204,7 +192,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
         
         self.model = model
         self.placeholderImage = placeholderImage
-        self._currentPage = initialPage
+        self.currentPage = initialPage
         
         // Make sure initial page is in range
         guard isPageInRange(initialPage) else {
@@ -224,8 +212,8 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
-        add(_carousel!, to: container, of: parentViewController)
+        carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
+        add(carousel!, to: container, of: parentViewController)
     }
 
     public func scrollToNextPage() {
@@ -264,7 +252,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
             throw CoordinatorError.pageOutOfRange
         }
         
-        _currentPage = p
+        currentPage = p
     }
     
     /// +1 to page number - calling this will update currentPage -> update caoursel.viewModel -> update images in carousel -> scroll carousel to desire subview
@@ -344,34 +332,23 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     }
     
     public var delegate: KSICCoordinatorDelegate?
-    
     public let model: [KSImageCarouselDisplayable]
-    
-    public private(set) var placeholderImage: UIImage?
-    
+    public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
-    
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
+    public private(set) var carousel: KSICScrollerViewController?
     
-    private var _carousel: KSICScrollerViewController?
-    public var carousel: KSICScrollerViewController? {
-        return _carousel
-    }
-    
-    private var _currentPage: Int {
+    public private(set) var currentPage: Int {
         didSet {
             
             // Note: Everytime current page being set, we will update carousel's viewModel (which will update images in carousel) and scroll carousel to subview that user should see
             
             // Update view model of carousel
-            _carousel?.viewModel = carouselViewModel
+            carousel?.viewModel = carouselViewModel
             
             // Scroll carousel (without animation) to subview that user should see
             swapCarouselSubview()
         }
-    }
-    public var currentPage: Int {
-        return _currentPage
     }
     
     public var carouselViewModel: [KSImageCarouselDisplayable] {
@@ -420,7 +397,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
         
         self.model = model
         self.placeholderImage = placeholderImage
-        self._currentPage = initialPage
+        self.currentPage = initialPage
         
         // Make sure initial page is in range
         guard isPageInRange(initialPage) else {
@@ -440,8 +417,8 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     // MARK: KSICCoordinator conformation
     public func showCarousel(inside container: UIView, of parentViewController: UIViewController) {
-        _carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
-        add(_carousel!, to: container, of: parentViewController)
+        carousel = KSICScrollerViewController(withViewModel: carouselViewModel, placeholderImage: placeholderImage, delegate: self)
+        add(carousel!, to: container, of: parentViewController)
     }
     
     public func scrollToNextPage() {
@@ -507,7 +484,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
             throw CoordinatorError.pageOutOfRange
         }
         
-        _currentPage = p
+        currentPage = p
     }
     
     /// Base on current page, scroll carousel (without animation) to subview that should be visible to user
