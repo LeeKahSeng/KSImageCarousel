@@ -129,7 +129,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
-    public private(set) var carousel: KSICScrollerViewController?
+    public internal(set) var carousel: KSICScrollerViewController?
 
     public private(set) var currentPage: Int {
         didSet {
@@ -277,7 +277,6 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     
     /// Base on current page, scroll carousel (without animation) to subview that should be visible to user
     fileprivate func swapCarouselSubview() {
-        // TODO: Add unit test
         if isFirstPage {
             // Scroll to first image view
             carousel?.scrollToFirstSubview(false)
@@ -336,7 +335,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
     public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
-    public private(set) var carousel: KSICScrollerViewController?
+    public internal(set) var carousel: KSICScrollerViewController?
     
     public private(set) var currentPage: Int {
         didSet {
@@ -489,8 +488,6 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     
     /// Base on current page, scroll carousel (without animation) to subview that should be visible to user
     fileprivate func swapCarouselSubview() {
-        // TODO: Add unit test
-        
         // Center page should always be the current visible page
         carousel?.scrollToCenterSubview(false)
     }

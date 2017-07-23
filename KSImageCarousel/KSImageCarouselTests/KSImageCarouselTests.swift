@@ -307,9 +307,159 @@ class KSImageCarouselTests: XCTestCase {
         actualViewModel = coordinator.carouselViewModel
         XCTAssertTrue(compare(viewModel1: expectedViewModel, viewModel2: actualViewModel), "Expected view model: \(expectedViewModel), but get \(actualViewModel)")
     }
-
     
-    // MARK: - Utilities
+    func testInfiniteCoordonatorSwapCarouselSubview() {
+        // Create test data
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.gray),
+                          createTestImage(.red)]
+        let dummyInitialPage = 2
+        
+        // Create coordinator and change page
+        let coordinator = try! KSICInfiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        let fakeScroller = KSICFakeScrollerViewController(withViewModel: coordinator.carouselViewModel)
+        coordinator.carousel = fakeScroller
+        
+        // Note: For infinite coordinator, only scrollToCenterSubview() should always get called no matter what page the coordinator currently in.
+        
+        // Next page (page = 3)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Next page (page = 0)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Next page (page = 1)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 0)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 3)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 2)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+    }
+    
+    func testFiniteCoordonatorSwapCarouselSubview() {
+        // Create test data
+        let dummyModel = [createTestImage(.black),
+                          createTestImage(.white),
+                          createTestImage(.gray),
+                          createTestImage(.red)]
+        let dummyInitialPage = 1
+        
+        // Create coordinator and change page
+        let coordinator = try! KSICFiniteCoordinator(with: dummyModel, initialPage: dummyInitialPage)
+        let fakeScroller = KSICFakeScrollerViewController(withViewModel: coordinator.carouselViewModel)
+        coordinator.carousel = fakeScroller
+        
+        // Next page (page = 2)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Next page (page = 3)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertFalse(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertTrue(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Next page (page = 3)
+        coordinator.increasePageByOne()
+        // Check is desire function being called
+        XCTAssertFalse(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 2)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 1)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertTrue(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 0)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertFalse(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertTrue(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+        
+        // Previous page (page = 0)
+        coordinator.reducePageByOne()
+        // Check is desire function being called
+        XCTAssertFalse(fakeScroller.scrollToCenterSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToFirstSubviewCalled)
+        XCTAssertFalse(fakeScroller.scrollToLastSubviewCalled)
+        // Reset status
+        fakeScroller.resetStatus()
+    }
+}
+
+
+// MARK: - Utilities
+extension KSImageCarouselTests {
+    
     func compare(viewModel1 vm1: [KSImageCarouselDisplayable], viewModel2 vm2: [KSImageCarouselDisplayable]) -> Bool {
         
         for i in 0..<vm1.count {
@@ -335,5 +485,4 @@ class KSImageCarouselTests: XCTestCase {
     func createTestImage(_ img: TestImage) -> UIImage {
         return UIImage(named: img.name, in: Bundle(for: KSImageCarouselTests.self), compatibleWith: nil)!
     }
-    
 }

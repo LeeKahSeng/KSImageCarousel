@@ -199,7 +199,6 @@ public class KSICScrollerViewController: UIViewController {
     }
     
     fileprivate func scrollViewDidEndScrolling(withNewContentOffsetX newX: CGFloat, oldContentOffsetX oldX: CGFloat) {
-        // TODO: Add unit test to make sure delegate trigger correctly
         if newX > oldX {
             // Next page
             // Trigger delegate and let coordinator decide what to do

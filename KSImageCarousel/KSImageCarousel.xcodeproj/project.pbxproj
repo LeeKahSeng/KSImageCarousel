@@ -19,6 +19,7 @@
 		F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */; };
 		F9D1583D1ED5B8D200F4EAD7 /* KSImageCarousel.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9D4A6421F20656100CBEE07 /* KSICImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */; };
+		F9F4812B1F248E2500F647CF /* KSICFakeScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSImageCarouselTests.swift; sourceTree = "<group>"; };
 		F9D1583C1ED5B8D200F4EAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageCache.swift; sourceTree = "<group>"; };
+		F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICFakeScrollerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				F99C319F1EDD7EC400019996 /* Assets.xcassets */,
 				F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */,
+				F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */,
 				F9D1583C1ED5B8D200F4EAD7 /* Info.plist */,
 			);
 			path = KSImageCarouselTests;
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */,
+				F9F4812B1F248E2500F647CF /* KSICFakeScrollerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
