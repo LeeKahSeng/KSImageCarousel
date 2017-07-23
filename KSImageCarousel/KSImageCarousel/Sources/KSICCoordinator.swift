@@ -111,6 +111,10 @@ extension KSICCoordinator {
     ///   - parentViewController: parent view controller of the carousel
     fileprivate func add(_ carousel: KSICScrollerViewController, to container: UIView, of parentViewController: UIViewController) {
         
+        // Note: automaticallyAdjustsScrollViewInsets of the parent view controller must be set to false so that content size of UIScrollView in KSICScrollerViewController is correct
+        parentViewController.automaticallyAdjustsScrollViewInsets = false
+        
+        // Add KSICScrollerViewController as child view controller
         parentViewController.addChildViewController(carousel)
         carousel.didMove(toParentViewController: parentViewController)
         
