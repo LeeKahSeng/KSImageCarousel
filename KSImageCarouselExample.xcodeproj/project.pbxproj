@@ -10,7 +10,6 @@
 		F91944721F1F56BA00C4140F /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F91944711F1F56BA00C4140F /* KSImageCarousel.framework */; };
 		F91944731F1F56BA00C4140F /* KSImageCarousel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F91944711F1F56BA00C4140F /* KSImageCarousel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9D158531ED5B94100F4EAD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */; };
-		F9D158551ED5B94100F4EAD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D158541ED5B94100F4EAD7 /* ViewController.swift */; };
 		F9D158581ED5B94100F4EAD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D158561ED5B94100F4EAD7 /* Main.storyboard */; };
 		F9D1585A1ED5B94100F4EAD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9D158591ED5B94100F4EAD7 /* Assets.xcassets */; };
 		F9D1585D1ED5B94100F4EAD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9D1585B1ED5B94100F4EAD7 /* LaunchScreen.storyboard */; };
@@ -208,7 +207,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F4813C1F24ABB600F647CF /* FiniteDemoViewController.swift in Sources */,
-				F9D158551ED5B94100F4EAD7 /* ViewController.swift in Sources */,
 				F9D158531ED5B94100F4EAD7 /* AppDelegate.swift in Sources */,
 				F9F4813A1F24AB9F00F647CF /* InfinityDemoViewController.swift in Sources */,
 			);
