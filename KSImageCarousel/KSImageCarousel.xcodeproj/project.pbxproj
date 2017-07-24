@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */; };
+		F96BF5B11EE026ED00E0E9E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */; };
+		F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */; };
+		F99C31A01EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
+		F99C31A11EDD7EC400019996 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99C319F1EDD7EC400019996 /* Assets.xcassets */; };
+		F99DC4D71F2311DD00F2093B /* KSICImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DC4D61F2311DD00F2093B /* KSICImageView.swift */; };
+		F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */; };
+		F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A678DF1EDAD96600AE2E0A /* KSICError.swift */; };
 		F9D158361ED5B8D200F4EAD7 /* KSImageCarousel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */; };
 		F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */; };
 		F9D1583D1ED5B8D200F4EAD7 /* KSImageCarousel.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F9D4A6421F20656100CBEE07 /* KSICImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */; };
+		F9F4812B1F248E2500F647CF /* KSICFakeScrollerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +33,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICScrollerViewController.swift; sourceTree = "<group>"; };
+		F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSImageCarouselDisplayable.swift; sourceTree = "<group>"; };
+		F99C319F1EDD7EC400019996 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F99DC4D61F2311DD00F2093B /* KSICImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageView.swift; sourceTree = "<group>"; };
+		F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICCoordinator.swift; sourceTree = "<group>"; };
+		F9A678DF1EDAD96600AE2E0A /* KSICError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICError.swift; sourceTree = "<group>"; };
 		F9D1582C1ED5B8D200F4EAD7 /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1582F1ED5B8D200F4EAD7 /* KSImageCarousel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSImageCarousel.h; sourceTree = "<group>"; };
 		F9D158301ED5B8D200F4EAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9D158351ED5B8D200F4EAD7 /* KSImageCarouselTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSImageCarouselTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSImageCarouselTests.swift; sourceTree = "<group>"; };
 		F9D1583C1ED5B8D200F4EAD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICImageCache.swift; sourceTree = "<group>"; };
+		F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSICFakeScrollerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +69,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6F57FCBD9D383AB52CD2933 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9D158221ED5B8D200F4EAD7 = {
 			isa = PBXGroup;
 			children = (
 				F9D1582E1ED5B8D200F4EAD7 /* KSImageCarousel */,
 				F9D158391ED5B8D200F4EAD7 /* KSImageCarouselTests */,
 				F9D1582D1ED5B8D200F4EAD7 /* Products */,
+				A6F57FCBD9D383AB52CD2933 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,7 +108,9 @@
 		F9D158391ED5B8D200F4EAD7 /* KSImageCarouselTests */ = {
 			isa = PBXGroup;
 			children = (
+				F99C319F1EDD7EC400019996 /* Assets.xcassets */,
 				F9D1583A1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift */,
+				F9F4812A1F248E2500F647CF /* KSICFakeScrollerViewController.swift */,
 				F9D1583C1ED5B8D200F4EAD7 /* Info.plist */,
 			);
 			path = KSImageCarouselTests;
@@ -90,6 +119,13 @@
 		F9D158771ED5BEDD00F4EAD7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F9A678DF1EDAD96600AE2E0A /* KSICError.swift */,
+				F9A678DB1EDAD46D00AE2E0A /* KSICCoordinator.swift */,
+				F99C319C1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift */,
+				F96BF5AE1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift */,
+				F96BF5B01EE026ED00E0E9E6 /* Extensions.swift */,
+				F9D4A6411F20656100CBEE07 /* KSICImageCache.swift */,
+				F99DC4D61F2311DD00F2093B /* KSICImageView.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -190,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99C31A01EDD7EC400019996 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F99C31A11EDD7EC400019996 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +245,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9D4A6421F20656100CBEE07 /* KSICImageCache.swift in Sources */,
+				F96BF5B11EE026ED00E0E9E6 /* Extensions.swift in Sources */,
+				F99C319D1EDD7AEE00019996 /* KSImageCarouselDisplayable.swift in Sources */,
+				F96BF5AF1EDFF81C00E0E9E6 /* KSICScrollerViewController.swift in Sources */,
+				F99DC4D71F2311DD00F2093B /* KSICImageView.swift in Sources */,
+				F9A678DC1EDAD46D00AE2E0A /* KSICCoordinator.swift in Sources */,
+				F9A678E01EDAD96600AE2E0A /* KSICError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9D1583B1ED5B8D200F4EAD7 /* KSImageCarouselTests.swift in Sources */,
+				F9F4812B1F248E2500F647CF /* KSICFakeScrollerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +420,7 @@
 		F9D158441ED5B8D200F4EAD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SM42V25455;
 				INFOPLIST_FILE = KSImageCarouselTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -386,6 +433,7 @@
 		F9D158451ED5B8D200F4EAD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = SM42V25455;
 				INFOPLIST_FILE = KSImageCarouselTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
