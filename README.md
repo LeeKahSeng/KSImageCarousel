@@ -62,7 +62,7 @@ Make sure you import KSImageCarousel if you are using CocoaPods or Carthage.
 import KSImageCarousel
 ```
 
-To use KSImageCarousel with infinity scrolling mode.
+To use KSImageCarousel with finite scrolling mode.
 ```swift
 // Create container view
 let carouselContainer = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 150))
@@ -84,7 +84,7 @@ if let coordinator = try? KSICFiniteCoordinator(with: model, placeholderImage: n
 }
 ```
 
-To use KSImageCarousel with finite scrolling mode
+To use KSImageCarousel with infinite scrolling mode
 ```swift
 // Create container view
 let carouselContainer = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 150))
