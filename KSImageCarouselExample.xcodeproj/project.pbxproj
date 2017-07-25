@@ -42,7 +42,6 @@
 		F91944711F1F56BA00C4140F /* KSImageCarousel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KSImageCarousel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D1584F1ED5B94100F4EAD7 /* KSImageCarouselExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KSImageCarouselExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F9D158541ED5B94100F4EAD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F9D158571ED5B94100F4EAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F9D158591ED5B94100F4EAD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9D1585C1ED5B94100F4EAD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		3AEDB88392DE9A467EA9C030 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F91944711F1F56BA00C4140F /* KSImageCarousel.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -80,7 +80,6 @@
 		F9D158461ED5B94100F4EAD7 = {
 			isa = PBXGroup;
 			children = (
-				F91944711F1F56BA00C4140F /* KSImageCarousel.framework */,
 				F9D158511ED5B94100F4EAD7 /* KSImageCarouselExample */,
 				F9D158501ED5B94100F4EAD7 /* Products */,
 				3AEDB88392DE9A467EA9C030 /* Frameworks */,
@@ -99,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				F9D158521ED5B94100F4EAD7 /* AppDelegate.swift */,
-				F9D158541ED5B94100F4EAD7 /* ViewController.swift */,
 				F9F481391F24AB9F00F647CF /* InfinityDemoViewController.swift */,
 				F9F4813B1F24ABB600F647CF /* FiniteDemoViewController.swift */,
 				F9D158561ED5B94100F4EAD7 /* Main.storyboard */,
