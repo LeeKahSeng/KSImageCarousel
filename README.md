@@ -128,7 +128,7 @@ To detect tap event on the carousel, just conform to ```KSICCoordinatorDelegate`
 Feel free to clone or download the source code and checkout the KSImageCarouselExample project which highlights how to use KSImageCarousel correctly.
 
 ### Adapt to use other type of image source
-Currently KSImageCarousel support both ```UIImage``` and ```URL``` as image source. However, there might be situation where you need KSImageCarousel to support other image source such as Base64, byte array, etc., or you would prefer to use your project's own image downloader instead of the build-in downloader of KSImageCarousel. What you need to do is just create a custom image provider class and conform to KSImageCarouselDisplayable protocol.
+Currently KSImageCarousel support both ```UIImage``` and ```URL``` as image source. However, there might be situation where you need KSImageCarousel to support other image source such as Base64, byte array, etc., or you would prefer to use your project's own image downloader instead of the build-in downloader of KSImageCarousel. What you need to do is just create a custom image provider class and conform to ```KSImageCarouselDisplayable``` protocol.
 
 Sample class to support Base64 image source:
 ```swift
