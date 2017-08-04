@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "KSImageCarousel"
-  s.version      = "1.0.0"
+  s.version      = "1.0.2"
   s.summary      = "Lightweight image carousel which can easily adapt to different type of image source."
 
   s.description  = "KSImageCarousel support both finite and infinite scrolling mode. Just init KSImageCarousel with your desire UIImages or image URLs and it will do all the work for you. KSImageCarousel can also easily adapt to different type of image source other than UIImage and image URL"
