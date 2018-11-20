@@ -295,7 +295,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 }
 
 // MARK: KSICScrollerViewControllerDelegate
-extension KSICCoordinator where Self == KSICFiniteCoordinator {
+extension KSICCoordinator where Self: KSICFiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel (without animation) to subview that user should see
         swapCarouselSubview()
@@ -498,7 +498,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
 }
 
 // MARK: KSICScrollerViewControllerDelegate
-extension KSICCoordinator where Self == KSICInfiniteCoordinator {
+extension KSICCoordinator where Self: KSICInfiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel (without animation) to subview that user should see
         swapCarouselSubview()
