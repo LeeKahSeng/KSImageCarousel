@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "Lee Kah Seng" => "kahseng.lee123@gmail.com" }
  
+  s.swift_version = '4.2'
   s.platform     = :ios, "10.3"
   s.source       = { 
     :git => 'https://github.com/LeeKahSeng/KSImageCarousel.git', 
