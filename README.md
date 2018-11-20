@@ -9,9 +9,9 @@ KSImageCarousel is a lightweight image carousel which can easily adapt to differ
 
 
 ## Requirements
-* Xcode 9 or later
+* Xcode 10 or later
 * iOS 10.3 or later
-* Swift 4.0 or later
+* Swift 4.2 or later
 
 
 ## Features
