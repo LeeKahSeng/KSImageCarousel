@@ -46,7 +46,7 @@ class KSICImageView: UIImageView {
     }
     
     private func commonInit() {
-        activityIndicator.activityIndicatorViewStyle = .gray
+        activityIndicator.style = .gray
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         addSubview(activityIndicator)

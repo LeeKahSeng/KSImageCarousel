@@ -54,7 +54,7 @@ public protocol KSICCoordinator: class, KSICScrollerViewControllerDelegate {
     var shouldShowActivityIndicator: Bool { get }
     
     /// Style of the activity indicator that shown when loading image to carousel. Default value is gray. This value needs should be set before calling showCarousel(inside: of:)
-    var activityIndicatorStyle: UIActivityIndicatorViewStyle { get }
+    var activityIndicatorStyle: UIActivityIndicatorView.Style { get }
     
     /// KSICCoordinator optional delegte
     var delegate: KSICCoordinatorDelegate? { get }
@@ -115,8 +115,8 @@ extension KSICCoordinator {
         parentViewController.automaticallyAdjustsScrollViewInsets = false
         
         // Add KSICScrollerViewController as child view controller
-        parentViewController.addChildViewController(carousel)
-        carousel.didMove(toParentViewController: parentViewController)
+        parentViewController.addChild(carousel)
+        carousel.didMove(toParent: parentViewController)
         
         // Carousel to follow container size
         container.addSameSizeSubview(carousel.view)
@@ -132,7 +132,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
     public let model: [KSImageCarouselDisplayable]
     public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
+    public var activityIndicatorStyle: UIActivityIndicatorView.Style = .gray
     public internal(set) var carousel: KSICScrollerViewController?
 
     public private(set) var currentPage: Int {
@@ -295,7 +295,7 @@ public class KSICFiniteCoordinator: KSICCoordinator {
 }
 
 // MARK: KSICScrollerViewControllerDelegate
-extension KSICCoordinator where Self == KSICFiniteCoordinator {
+extension KSICCoordinator where Self: KSICFiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel (without animation) to subview that user should see
         swapCarouselSubview()
@@ -319,7 +319,7 @@ extension KSICCoordinator where Self == KSICFiniteCoordinator {
         return shouldShowActivityIndicator
     }
     
-    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorViewStyle {
+    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorView.Style {
         return activityIndicatorStyle
     }
 }
@@ -338,7 +338,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
     public let model: [KSImageCarouselDisplayable]
     public let placeholderImage: UIImage?
     public var shouldShowActivityIndicator = true
-    public var activityIndicatorStyle: UIActivityIndicatorViewStyle = .gray
+    public var activityIndicatorStyle: UIActivityIndicatorView.Style = .gray
     public internal(set) var carousel: KSICScrollerViewController?
     
     public private(set) var currentPage: Int {
@@ -498,7 +498,7 @@ public class KSICInfiniteCoordinator: KSICCoordinator {
 }
 
 // MARK: KSICScrollerViewControllerDelegate
-extension KSICCoordinator where Self == KSICInfiniteCoordinator {
+extension KSICCoordinator where Self: KSICInfiniteCoordinator {
     public func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController) {
         // Scroll carousel (without animation) to subview that user should see
         swapCarouselSubview()
@@ -522,7 +522,7 @@ extension KSICCoordinator where Self == KSICInfiniteCoordinator {
         return shouldShowActivityIndicator
     }
     
-    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorViewStyle {
+    public func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorView.Style {
         return activityIndicatorStyle
     }
 }
