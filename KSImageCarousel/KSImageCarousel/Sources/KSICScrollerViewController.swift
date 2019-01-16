@@ -33,6 +33,7 @@ public protocol KSICScrollerViewControllerDelegate {
     func scrollerViewControllerDidFinishLayoutSubviews(_ viewController: KSICScrollerViewController)
     func scrollerViewControllerDidTappedImageView(at index: Int, viewController: KSICScrollerViewController)
     
+    func scrollerViewControllerContentMode() -> UIView.ContentMode
     func scrollerViewControllerShouldShowActivityIndicator() -> Bool
     func scrollerViewControllerShowActivityIndicatorStyle() -> UIActivityIndicatorView.Style
 }
@@ -71,6 +72,7 @@ public class KSICScrollerViewController: UIViewController {
         for _ in vm.enumerated() {
             // Set placeholder image to image view and keep in array
             let imgView = KSICImageView(image: placeholderImage)
+            imgView.contentMode = delegate.scrollerViewControllerContentMode()
             imgView.activityIndicator.alpha = delegate.scrollerViewControllerShouldShowActivityIndicator() ? 1.0 : 0.0
             imgView.activityIndicator.style = delegate.scrollerViewControllerShowActivityIndicatorStyle()
             imageViews.append(imgView)
