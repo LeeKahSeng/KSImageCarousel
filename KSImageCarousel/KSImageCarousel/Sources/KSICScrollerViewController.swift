@@ -214,7 +214,7 @@ public class KSICScrollerViewController: UIViewController {
     
     @objc fileprivate func imageViewDidTapped(regconizer: UITapGestureRecognizer) {
         
-        let index = tapGestureRecognizers.index { (reg) -> Bool in
+        let index = tapGestureRecognizers.firstIndex { (reg) -> Bool in
             return (reg == regconizer)
         }
         
